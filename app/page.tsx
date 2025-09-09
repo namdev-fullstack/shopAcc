@@ -329,10 +329,10 @@ export default function Home() {
 
               {/* CTA buttons */}
               <div className="flex justify-center space-x-4">
-                <button className="px-8 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-400/50 hover:scale-105 transition sm:text-base">
-                  Xem Danh Sách Acc
+                <button className="px-8 py-3 sm:px-3 sm:py-2 sm:rounded-sm rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-400/50 hover:scale-105 transition sm:text-base">
+                 Danh Sách Acc
                 </button>
-                <button className="px-8 py-3 rounded-2xl border border-blue-500 text-blue-600 font-semibold hover:bg-blue-50 transition  sm:text-base">
+                <button className="px-8 py-3 sm:px-3 sm:py-2 sm:rounded-sm rounded-2xl border border-blue-500 text-blue-600 font-semibold hover:bg-blue-50 transition  sm:text-base">
                   Liên Hệ Zalo
                 </button>
               </div>
@@ -390,9 +390,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {flashSaleItems.map((item) => (
-              <Card key={item.id} className="group hover:shadow-2xl hover:shadow-red-500/25 hover:scale-105 hover:rotate-1 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50">
+              <Card key={item.id} className="group hover:shadow-2xl hover:shadow-red-500/25 hover:scale-105 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-lg">
                     <Image
