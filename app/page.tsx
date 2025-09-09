@@ -390,99 +390,93 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {flashSaleItems.map((item) => (
-              <Card key={item.id} className="group hover:shadow-2xl hover:shadow-red-500/25 hover:scale-105 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50">
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={400}
-                      height={200}
-                      className="w-full h-48 object-cover group-hover:scale-125 group-hover:-rotate-1 transition-transform duration-700"
-                    />
-                    <Badge className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-red-600 text-white border-0 animate-pulse shadow-lg">
-                      -{item.discount}%
-                    </Badge>
-                    <Badge className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 animate-bounce shadow-lg">
-                      HOT
-                    </Badge>
-                    <div className="absolute bottom-0 left-0">
-                      {/* Label chính */}
-                      <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold text-sm px-3 py-1 rounded-tr-lg shadow-lg">
-                        Acc Trắng TT
-
-                        {/* Đuôi phía dưới */}
-                        <div className="absolute -bottom-2 left-0 w-0 h-0 border-l-[10px] border-l-transparent border-t-[10px] border-t-orange-600 opacity-70"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-1">{item.name}</h3>
-                    <div className="flex items-center space-x-2 mb-6">
-                      <Trophy className="w-4 h-4 text-yellow-500" />
-                      <span className="text-sm font-medium text-gray-700">
-                        Rank: {item.category}
-                      </span>
-                    </div>
-
-
-                    {/* Thông tin bổ sung: Tướng & Skin */}
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      <div className="flex items-center space-x-2 bg-blue-50 px-2 py-1 rounded-lg shadow-sm">
-                        <Users className="w-4 h-4 text-blue-500" />
-                        <span className="text-sm font-medium text-gray-700">
-                          276 Tướng
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2 bg-pink-50 px-3 py-2 rounded-lg shadow-sm">
-                        <Star className="w-4 h-4 text-pink-500" />
-                        <span className="text-sm font-medium text-gray-700">
-                          326 Skin
-                        </span>
-                      </div>
-                    </div>
-
-
-
-                    {/* Giá bán */}
-                    <div className="mb-4">
-                      <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-2xl font-bold text-red-500">
-                          {formatPrice(item.salePrice)}
-                        </span>
-                        <span className="text-sm text-gray-400 line-through">
-                          {formatPrice(item.originalPrice)}
-                        </span>
-                      </div>
-                      <p className="text-sm text-green-600 font-medium">
-                        Tiết kiệm {formatPrice(item.savings)}
-                      </p>
-                    </div>
-
-
-
-                    {/* Nút mua */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
-
-                      <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-xl hover:scale-110 text-white text-sm px-4 py-2 h-auto transition-all duration-300">
-                        Mua ngay
-                        <ChevronRight className="w-4 h-4 ml-1" />
-                      </Button>
-                    </div>
-                  </div>
-
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 px-2">
+  {flashSaleItems.map((item) => (
+    <Card
+      key={item.id}
+      className="group hover:shadow-xl hover:shadow-red-500/20 hover:scale-102 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50"
+    >
+      <CardContent className="p-0">
+        <div className="relative overflow-hidden rounded-t-lg">
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={400}
+            height={200}
+            className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+          />
+          <Badge className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-[10px] border-0 animate-pulse shadow-md">
+            -{item.discount}%
+          </Badge>
+          <Badge className="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] border-0 animate-bounce shadow-md">
+            HOT
+          </Badge>
+          <div className="absolute bottom-0 left-0">
+            <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+              Acc Trắng TT
+              <div className="absolute -bottom-1 left-0 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-orange-600 opacity-70"></div>
+            </div>
           </div>
+        </div>
+
+        <div className="p-3 sm:p-4">
+          {/* Title */}
+          <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">{item.name}</h3>
+
+          {/* Rank */}
+          <div className="flex items-center space-x-1 mb-3">
+            <Trophy className="w-3 h-3 text-yellow-500" />
+            <span className="text-xs sm:text-sm font-medium text-gray-700">
+              Rank: {item.category}
+            </span>
+          </div>
+
+          {/* Extra info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+            <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+              <Users className="w-3 h-3 text-blue-500" />
+              <span className="text-[11px] font-medium text-gray-700">276 Tướng</span>
+            </div>
+            <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+              <Star className="w-3 h-3 text-pink-500" />
+              <span className="text-[11px] font-medium text-gray-700">326 Skin</span>
+            </div>
+          </div>
+
+          {/* Price */}
+          <div className="mb-3">
+            <div className="flex items-center space-x-1 mb-1">
+              <span className="md:text-lg text-xs font-bold text-red-500">
+                {formatPrice(item.salePrice)}
+              </span>
+              <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+  {formatPrice(item.originalPrice)}
+</span>
+
+            </div>
+            <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+              Tiết kiệm {formatPrice(item.savings)}
+            </p>
+          </div>
+
+          {/* Bottom row */}
+          <div className="flex items-center justify-between">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+              Mua
+              <ChevronRight className="w-3 h-3 ml-1" />
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
         </div>
       </section>
 
