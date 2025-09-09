@@ -245,12 +245,7 @@ export default function Home() {
             </nav>
 
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" className="text-gray-600 hover:text-violet-600 hover:bg-violet-50">
-                Đăng Nhập
-              </Button>
-              <Button className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-600 hover:to-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                Đăng Ký
-              </Button>
+            
               <Button
                 variant="ghost"
                 size="sm"
@@ -292,7 +287,7 @@ export default function Home() {
             alt="Skin Liên Quân"
             width={100}
             height={100}
-            className="absolute top-24 left-16 animate-float-slow drop-shadow-xl"
+            className="absolute top-24 left-16 animate-float-slow drop-shadow-xl sm:d-none"
           />
 
           <Image
@@ -334,10 +329,10 @@ export default function Home() {
 
               {/* CTA buttons */}
               <div className="flex justify-center space-x-4">
-                <button className="px-8 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-400/50 hover:scale-105 transition">
+                <button className="px-8 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-400/50 hover:scale-105 transition sm:text-base">
                   Xem Danh Sách Acc
                 </button>
-                <button className="px-8 py-3 rounded-2xl border border-blue-500 text-blue-600 font-semibold hover:bg-blue-50 transition">
+                <button className="px-8 py-3 rounded-2xl border border-blue-500 text-blue-600 font-semibold hover:bg-blue-50 transition  sm:text-base">
                   Liên Hệ Zalo
                 </button>
               </div>
@@ -397,7 +392,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {flashSaleItems.map((item) => (
-              <Card key={item.id} className="group hover:shadow-2xl hover:shadow-red-500/25 hover:-translate-y-4 hover:scale-105 hover:rotate-1 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50">
+              <Card key={item.id} className="group hover:shadow-2xl hover:shadow-red-500/25 hover:scale-105 hover:rotate-1 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-lg">
                     <Image
