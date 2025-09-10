@@ -491,9 +491,12 @@ export default function Home() {
                     <Badge className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-[10px] border-0 animate-pulse shadow-md">
                       -{item.discount}%
                     </Badge>
-                    <Badge className="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] border-0 animate-bounce shadow-md">
-                      HOT
-                    </Badge>
+                    
+                    <Badge className="absolute top-2 right-2  flex items-center space-x-1 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+  {/* Icon Flash với hiệu ứng nhấp nháy */}
+  <span className="font-bold text-xs">Sale</span>
+  <Zap className="w-4 h-4 text-yellow-300 animate-pulse" />
+</Badge>
                     <div className="absolute bottom-0 left-0">
                       <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
                         Acc Trắng TT
@@ -516,13 +519,13 @@ export default function Home() {
 
                     {/* Extra info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
-                      <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
-                        <Users className="w-3 h-3 text-blue-500" />
-                        <span className="text-[11px] font-medium text-gray-700">276 Tướng</span>
+                      <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                        <Users className="w-3 h-3 text-blue-500 font-bold" />
+                        <span className="text-[11px]  text-gray-700 font-bold">276 Tướng</span>
                       </div>
                       <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
                         <Star className="w-3 h-3 text-pink-500" />
-                        <span className="text-[11px] font-medium text-gray-700">326 Skin</span>
+                        <span className="text-[11px]  text-gray-700 font-bold">326 Skin</span>
                       </div>
                     </div>
 
@@ -575,7 +578,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Tài Khoản <span className="bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">Hot Nhất</span>
+              Tài Khoản <span className="bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">VIP Nhất</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Những tài khoản VIP được săn đón nhiều nhất với giá ưu đãi
