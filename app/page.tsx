@@ -382,7 +382,7 @@ export default function Home() {
               </p>
 
               {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <button className="px-3 py-2 rounded-md sm:px-8 sm:py-3 sm:rounded-2xl 
                      bg-gradient-to-r from-blue-600 to-indigo-600 
                      text-white font-semibold shadow-lg 
