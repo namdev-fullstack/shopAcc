@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronRight, Star, Users, ShoppingCart, Clock, Zap, Shield, Award, TrendingUp, Menu, X, Sparkles, Crown, Flame, Trophy } from 'lucide-react';
+import { ChevronRight, Star, Users, ShoppingCart, Clock, Zap, Shield, Award, TrendingUp, Menu, X, Sparkles, Crown, Flame, Trophy, Phone, HomeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -236,16 +236,43 @@ export default function Home() {
                 </span>
               </div>
             </div>
-
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium">Trang Chủ</a>
-              <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium">Game Hot</a>
-              <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium">Flash Sale</a>
-              <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium">Liên Hệ</a>
-            </nav>
+  <a
+    href="#"
+    className="flex items-center space-x-2 text-gray-700 hover:text-violet-600 transition-all font-semibold group"
+  >
+    <HomeIcon className="w-5 h-5 text-gray-500 group-hover:text-violet-600 transition-colors" />
+    <span>Trang Chủ</span>
+  </a>
+
+  <a
+    href="#"
+    className="flex items-center space-x-2 text-gray-700 hover:text-red-600 transition-all font-semibold group"
+  >
+    <Flame className="w-5 h-5 text-gray-500 group-hover:text-red-600 transition-colors" />
+    <span>Game Hot</span>
+  </a>
+
+  <a
+    href="#"
+    className="flex items-center space-x-2 text-gray-700 hover:text-orange-600 transition-all font-semibold group"
+  >
+    <Zap className="w-5 h-5 text-gray-500 group-hover:text-orange-600 transition-colors" />
+    <span>Flash Sale</span>
+  </a>
+
+  <a
+    href="#"
+    className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-all font-semibold group"
+  >
+    <Phone className="w-5 h-5 text-gray-500 group-hover:text-green-600 transition-colors" />
+    <span>Liên Hệ</span>
+  </a>
+</nav>
+
 
             <div className="flex items-center space-x-4">
-            
+
               <Button
                 variant="ghost"
                 size="sm"
@@ -258,16 +285,43 @@ export default function Home() {
           </div>
 
           {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden bg-white border-t border-gray-200 py-4 animate-fade-in-down">
-              <nav className="flex flex-col space-y-4 px-4">
-                <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium py-2">Trang Chủ</a>
-                <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium py-2">Game Hot</a>
-                <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium py-2">Flash Sale</a>
-                <a href="#" className="text-gray-600 hover:text-violet-600 transition-colors font-medium py-2">Liên Hệ</a>
-              </nav>
-            </div>
-          )}
+
+{mobileMenuOpen && (
+  <div className="fixed inset-x-0 top-14 z-50 backdrop-blur-xl bg-white/80 border-b border-white/20 shadow-lg animate-fade-in-down rounded-b-2xl">
+    <nav className="flex flex-col space-y-4 px-6 py-6">
+      <a
+        href="#"
+        className="flex items-center gap-3 text-gray-800 font-semibold hover:text-violet-600 transition-colors"
+      >
+        <HomeIcon className="w-5 h-5 text-violet-500" />
+        Trang Chủ
+      </a>
+      <a
+        href="#"
+        className="flex items-center gap-3 text-gray-800 font-semibold hover:text-pink-600 transition-colors"
+      >
+        <Flame className="w-5 h-5 text-pink-500" />
+        Game Hot
+      </a>
+      <a
+        href="#"
+        className="flex items-center gap-3 text-gray-800 font-semibold hover:text-orange-600 transition-colors"
+      >
+        <Zap className="w-5 h-5 text-orange-500" />
+        Flash Sale
+      </a>
+      <a
+        href="#"
+        className="flex items-center gap-3 text-gray-800 font-semibold hover:text-green-600 transition-colors"
+      >
+        <Phone className="w-5 h-5 text-green-500" />
+        Liên Hệ
+      </a>
+    </nav>
+  </div>
+)}
+
+
         </div>
       </header>
 
@@ -287,7 +341,7 @@ export default function Home() {
             alt="Skin Liên Quân"
             width={100}
             height={100}
-            className="absolute top-24 left-16 animate-float-slow drop-shadow-xl sm:d-none"
+            className="absolute md:top-24 md:left-16 top-4 left-2 animate-float-slow drop-shadow-xl sm:d-none"
           />
 
           <Image
@@ -328,14 +382,23 @@ export default function Home() {
               </p>
 
               {/* CTA buttons */}
-              <div className="flex justify-center space-x-4">
-                <button className="px-8 py-3 sm:px-3 sm:py-2 sm:rounded-sm rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-400/50 hover:scale-105 transition sm:text-base">
-                 Danh Sách Acc
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <button className="px-3 py-2 rounded-md sm:px-8 sm:py-3 sm:rounded-2xl 
+                     bg-gradient-to-r from-blue-600 to-indigo-600 
+                     text-white font-semibold shadow-lg 
+                     hover:shadow-blue-400/50 hover:scale-105 transition 
+                     text-sm sm:text-base">
+                  Danh Sách Acc
                 </button>
-                <button className="px-8 py-3 sm:px-3 sm:py-2 sm:rounded-sm rounded-2xl border border-blue-500 text-blue-600 font-semibold hover:bg-blue-50 transition  sm:text-base">
+
+                <button className="px-3 py-2 rounded-md sm:px-8 sm:py-3 sm:rounded-2xl 
+                     border border-blue-500 text-blue-600 font-semibold 
+                     hover:bg-blue-50 transition 
+                     text-sm sm:text-base">
                   Liên Hệ Zalo
                 </button>
               </div>
+
             </div>
           </div>
         </section>
@@ -353,129 +416,149 @@ export default function Home() {
       <section className="py-16 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 relative overflow-hidden">
         {/* Background Decorations */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 right-20 w-24 h-24 bg-gradient-to-r from-orange-300 to-red-300 rounded-full opacity-15 animate-bounce-slow"></div>
+          <div className="absolute top-10 right-4 w-8 h-8 bg-gradient-to-r from-orange-300 to-red-300 rounded-full opacity-15 animate-bounce-slow sm:hidden"></div>
           <div className="absolute bottom-10 left-20 w-32 h-32 bg-gradient-to-r from-red-300 to-pink-300 rounded-full opacity-10 animate-float"></div>
           <div className="absolute top-1/3 left-10 w-16 h-16 bg-gradient-to-r from-yellow-300 to-orange-300 transform rotate-45 opacity-20 animate-spin-slow"></div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto md:px-4 px-[2px]">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-6 py-3 text-lg animate-pulse shadow-xl">
-              <Zap className="w-5 h-5 mr-2 animate-bounce" />
-              FLASH SALE
-            </Badge>
+            <Badge className="mb-4 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-6 py-3 text-lg animate-pulse shadow-xl"> <Zap className="w-5 h-5 mr-2 animate-bounce" /> FLASH SALE </Badge>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               Giá Sốc <span className="text-red-500">Chỉ Hôm Nay</span>
             </h2>
-            <p className="text-gray-600 mb-8">
+
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8">
               Giảm đến 50% các tài khoản VIP - Số lượng có hạn!
             </p>
+
 
             <div className="flex items-center justify-center space-x-2 mb-8">
               <span className="text-gray-600">Kết thúc sau:</span>
               <div className="flex space-x-1">
-                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 rounded-lg font-bold text-xl shadow-lg animate-pulse">
+                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white 
+                  px-2 py-1 sm:px-3 sm:py-2 lg:px-4 lg:py-3 
+                  rounded-lg font-bold 
+                  text-sm sm:text-base lg:text-xl 
+                  shadow-lg animate-pulse">
                   {String(timeLeft.hours).padStart(2, '0')}
                 </div>
-                <span className="text-red-500 font-bold text-2xl animate-pulse">:</span>
-                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 rounded-lg font-bold text-xl shadow-lg animate-pulse">
+
+                <span className="text-red-500 font-bold 
+                   text-lg sm:text-xl lg:text-2xl 
+                   animate-pulse">:</span>
+
+                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white 
+                  px-2 py-1 sm:px-3 sm:py-2 lg:px-4 lg:py-3 
+                  rounded-lg font-bold 
+                  text-sm sm:text-base lg:text-xl 
+                  shadow-lg animate-pulse">
                   {String(timeLeft.minutes).padStart(2, '0')}
                 </div>
-                <span className="text-red-500 font-bold text-2xl animate-pulse">:</span>
-                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 rounded-lg font-bold text-xl shadow-lg animate-pulse">
+
+                <span className="text-red-500 font-bold 
+                   text-lg sm:text-xl lg:text-2xl 
+                   animate-pulse">:</span>
+
+                <div className="bg-gradient-to-r from-red-500 to-red-600 text-white 
+                  px-2 py-1 sm:px-3 sm:py-2 lg:px-4 lg:py-3 
+                  rounded-lg font-bold 
+                  text-sm sm:text-base lg:text-xl 
+                  shadow-lg animate-pulse">
                   {String(timeLeft.seconds).padStart(2, '0')}
                 </div>
               </div>
+
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:px-2 px-[2px]">
-  {flashSaleItems.map((item) => (
-    <Card
-      key={item.id}
-      className="group hover:shadow-xl hover:shadow-red-500/20 hover:scale-102 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50"
-    >
-      <CardContent className="p-0">
-        <div className="relative overflow-hidden rounded-t-lg">
-          <Image
-            src={item.image}
-            alt={item.name}
-            width={400}
-            height={200}
-            className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
-          />
-          <Badge className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-[10px] border-0 animate-pulse shadow-md">
-            -{item.discount}%
-          </Badge>
-          <Badge className="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] border-0 animate-bounce shadow-md">
-            HOT
-          </Badge>
-          <div className="absolute bottom-0 left-0">
-            <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
-              Acc Trắng TT
-              <div className="absolute -bottom-1 left-0 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-orange-600 opacity-70"></div>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[6px] gap-y-3   md:gap-6 md:px-2 px-[2px]">
+            {flashSaleItems.map((item) => (
+              <Card
+                key={item.id}
+                className="group hover:shadow-xl hover:shadow-red-500/20 hover:scale-102 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50"
+              >
+                <CardContent className="p-0">
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={400}
+                      height={200}
+                      className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                    />
+                    <Badge className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-[10px] border-0 animate-pulse shadow-md">
+                      -{item.discount}%
+                    </Badge>
+                    <Badge className="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] border-0 animate-bounce shadow-md">
+                      HOT
+                    </Badge>
+                    <div className="absolute bottom-0 left-0">
+                      <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+                        Acc Trắng TT
+                        <div className="absolute -bottom-1 left-0 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-orange-600 opacity-70"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-3 sm:p-4">
+                    {/* Title */}
+                    <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">{item.name}</h3>
+
+                    {/* Rank */}
+                    <div className="flex items-center space-x-1 mb-3">
+                      <Trophy className="w-3 h-3 text-yellow-500" />
+                      <span className="text-xs sm:text-sm font-medium text-gray-700">
+                        Rank: {item.category}
+                      </span>
+                    </div>
+
+                    {/* Extra info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                      <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                        <Users className="w-3 h-3 text-blue-500" />
+                        <span className="text-[11px] font-medium text-gray-700">276 Tướng</span>
+                      </div>
+                      <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                        <Star className="w-3 h-3 text-pink-500" />
+                        <span className="text-[11px] font-medium text-gray-700">326 Skin</span>
+                      </div>
+                    </div>
+
+                    {/* Price */}
+                    <div className="mb-3">
+                      <div className="flex items-center space-x-1 mb-1">
+                        <span className="md:text-lg text-xs font-bold text-red-500">
+                          {formatPrice(item.salePrice)}
+                        </span>
+                        <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                          {formatPrice(item.originalPrice)}
+                        </span>
+
+                      </div>
+                      <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                        Tiết kiệm {formatPrice(item.savings)}
+                      </p>
+                    </div>
+
+                    {/* Bottom row */}
+                    <div className="md:flex items-center justify-between hidden">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                        Mua
+                        <ChevronRight className="w-3 h-3 ml-1" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </div>
-
-        <div className="p-3 sm:p-4">
-          {/* Title */}
-          <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">{item.name}</h3>
-
-          {/* Rank */}
-          <div className="flex items-center space-x-1 mb-3">
-            <Trophy className="w-3 h-3 text-yellow-500" />
-            <span className="text-xs sm:text-sm font-medium text-gray-700">
-              Rank: {item.category}
-            </span>
-          </div>
-
-          {/* Extra info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
-            <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
-              <Users className="w-3 h-3 text-blue-500" />
-              <span className="text-[11px] font-medium text-gray-700">276 Tướng</span>
-            </div>
-            <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
-              <Star className="w-3 h-3 text-pink-500" />
-              <span className="text-[11px] font-medium text-gray-700">326 Skin</span>
-            </div>
-          </div>
-
-          {/* Price */}
-          <div className="mb-3">
-            <div className="flex items-center space-x-1 mb-1">
-              <span className="md:text-lg text-xs font-bold text-red-500">
-                {formatPrice(item.salePrice)}
-              </span>
-              <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
-  {formatPrice(item.originalPrice)}
-</span>
-
-            </div>
-            <p className="text-[11px] sm:text-xs text-green-600 font-medium">
-              Tiết kiệm {formatPrice(item.savings)}
-            </p>
-          </div>
-
-          {/* Bottom row */}
-          <div className="flex items-center justify-between">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-              ))}
-            </div>
-            <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
-              Mua
-              <ChevronRight className="w-3 h-3 ml-1" />
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  ))}
-</div>
 
         </div>
       </section>
