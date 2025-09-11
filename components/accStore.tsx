@@ -87,10 +87,19 @@ export default function AccStore() {
 
 
                   {/* Số lượng nick */}
-                  <div className="inline-flex items-center gap-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full text-base font-semibold shadow-md">
-                    <Layers className="w-3 h-3" />
-                    {acc.count.toLocaleString("vi-VN")} Nick
-                  </div>
+                  <div className="inline-flex items-center gap-1 
+  bg-gradient-to-r from-blue-500 to-indigo-500 
+  text-white 
+  px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 
+  rounded-full 
+  text-xs sm:text-sm md:text-base 
+  font-semibold 
+  shadow-md"
+>
+  <Layers className="w-3 h-3 sm:w-4 sm:h-4" />
+  {acc.count.toLocaleString("vi-VN")} Nick
+</div>
+
                 </div>
               </CardContent>
             </Card>
