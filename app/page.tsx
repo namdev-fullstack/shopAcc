@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
+import AccStore from '@/components/accStore';
+import AccCategorySection from '@/components/accCategorySection';
+import StatsSection from '@/components/StatsSection';
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -565,110 +568,35 @@ export default function Home() {
 
         </div>
       </section>
+<AccStore />
 
-      {/* Hot Accounts Section */}
-      <section className="py-16 bg-gradient-to-br from-white via-violet-50 to-blue-50 relative overflow-hidden">
-        {/* Background Decorations */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-10 w-28 h-28 bg-gradient-to-r from-violet-200 to-blue-200 rounded-full opacity-10 animate-float-delayed"></div>
-          <div className="absolute bottom-32 left-16 w-36 h-36 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full opacity-10 animate-float"></div>
-          <div className="absolute top-1/2 right-1/4 w-20 h-20 bg-gradient-to-r from-purple-300 to-pink-300 transform rotate-45 opacity-15 animate-spin-slow"></div>
-        </div>
 
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Tài Khoản <span className="bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">VIP Nhất</span>
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Những tài khoản VIP được săn đón nhiều nhất với giá ưu đãi
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {hotAccounts.map((account) => (
-              <Card key={account.id} className="group hover:shadow-2xl hover:shadow-violet-500/25 hover:-translate-y-4 hover:scale-105 hover:-rotate-1 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-violet-50">
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <Image
-                      src={account.image}
-                      alt={account.name}
-                      width={400}
-                      height={200}
-                      className="w-full h-48 object-cover group-hover:scale-125 group-hover:rotate-1 transition-transform duration-700"
-                    />
-                    <Badge className="absolute top-3 left-3 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 animate-pulse shadow-lg">
-                      HOT
-                    </Badge>
-                    {account.verified && (
-                      <div className="absolute top-3 right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full p-2 animate-bounce shadow-lg">
-                        <Award className="w-4 h-4 animate-pulse" />
-                      </div>
-                    )}
-                  </div>
 
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-1">{account.name}</h3>
-                    <p className="text-sm text-violet-600 font-medium mb-4">{account.category}</p>
 
-                    <div className="flex items-center space-x-4 mb-4 text-sm text-gray-600">
-                      <div className="flex items-center">
-                        <Users className="w-4 h-4 mr-1" />
-                        {account.accounts}
-                      </div>
-                      <div className="flex items-center">
-                        <TrendingUp className="w-4 h-4 mr-1" />
-                        {account.views}
-                      </div>
-                    </div>
+<AccCategorySection 
+  title="Trắng Thông Tin" 
+  description="Acc sạch 100%, chưa gắn bất kỳ thông tin nào. Bạn có thể đổi theo ý mình và sử dụng lâu dài, an toàn tuyệt đối." 
+/>
 
-                    <div className="mb-4">
-                      <div className="flex items-center space-x-2 mb-1">
-                        <span className="text-2xl font-bold text-green-600">
-                          {formatPrice(account.price)}
-                        </span>
-                        <span className="text-sm text-gray-400 line-through">
-                          {formatPrice(account.originalPrice)}
-                        </span>
-                      </div>
-                      <p className="text-sm text-green-600 font-medium">
-                        Tiết kiệm {account.savings}%
-                      </p>
-                    </div>
+<AccCategorySection 
+  title="Reg" 
+  description="Acc được đăng ký sẵn, chưa tham gia trận đấu nào. Có ít nhất 1 skin VIP." 
+/>
 
-                    <div className="flex items-center justify-between">
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
+<AccCategorySection 
+  title="Có Thông Tin" 
+  description="Acc có sẵn thông tin cơ bản, giá rẻ hơn." 
+/>
 
-                      <Button
-                        variant="ghost"
-                        className="text-violet-600 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-blue-600 hover:shadow-lg hover:scale-110 transition-all duration-300 text-sm px-4 py-2 h-auto"
-                      >
-                        Chi tiết
-                        <ChevronRight className="w-4 h-4 ml-1" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+<AccCategorySection 
+  title="VIP" 
+  description="Acc hiếm với nhiều tướng, skin độc quyền. Dành cho game thủ muốn khẳng định đẳng cấp ngay khi bắt đầu." 
+/>
 
-          <div className="text-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
-            >
-              Xem tất cả tài khoản
-              <ChevronRight className="ml-2 w-5 h-5" />
-            </Button>
-          </div>
-        </div>
-      </section>
 
+     
+<StatsSection />
       {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-16 relative overflow-hidden">
         {/* Background Decorations */}
