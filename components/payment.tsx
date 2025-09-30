@@ -47,7 +47,7 @@ export default function Payment({ data }: { data: any }) {
                 </Button>
             </AlertDialogTrigger>
 {user && user ?(
-                       <AlertDialogContent className="max-w-lg max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                       <AlertDialogContent className="max-w-lg max-h-[90vh] overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
 
                 <AlertDialogHeader>
                     <AlertDialogTitle>Chuyển khoản</AlertDialogTitle>
