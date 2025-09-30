@@ -312,7 +312,7 @@ export default async function Home() {
                         </Badge>
                         <div className="absolute bottom-0 left-0">
                           <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
-                            {acc.categories?.name}
+                          {acc.categories?.[0]?.name}
                             <div className="absolute -bottom-1 left-0 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-orange-600 opacity-70"></div>
                           </div>
                         </div>
