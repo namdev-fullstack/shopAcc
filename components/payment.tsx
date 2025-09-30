@@ -46,7 +46,7 @@ export default function Payment({ data }: { data: any }) {
                     Mua Ngay
                 </Button>
             </AlertDialogTrigger>
-
+{user && user ?(
             <AlertDialogContent className="max-w-lg">
                 <AlertDialogHeader>
                     <AlertDialogTitle>Chuyển khoản</AlertDialogTitle>
@@ -136,6 +136,21 @@ export default function Payment({ data }: { data: any }) {
                     </AlertDialogCancel>
                 </AlertDialogFooter>
             </AlertDialogContent>
+):(
+    <AlertDialogContent className="max-w-lg">
+        <AlertDialogHeader>
+            <AlertDialogTitle>Nạp tiền</AlertDialogTitle>
+            <AlertDialogDescription className="text-green-500 font-bold text-lg">Đăng nhập hoặc Đăng ký để nạp tiền</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter className="mt-4">
+            <AlertDialogCancel asChild>
+                <Button variant="outline" className="w-full">
+                    Đóng
+                </Button>
+            </AlertDialogCancel>
+        </AlertDialogFooter>
+    </AlertDialogContent>
+)}
         </AlertDialog>
     );
 }
