@@ -10,6 +10,7 @@ import StatsSection from '@/components/StatsSection';
 import Link from 'next/link';
 import Timer from '@/components/timer';
 import { createClient } from '@/utils/supabase/server';
+import { formatPrice } from '@/lib/utils';
 
 
 
@@ -183,12 +184,7 @@ export default async function Home() {
     }
   ];
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND'
-    }).format(price);
-  };
+ 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
