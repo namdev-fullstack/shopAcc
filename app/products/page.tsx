@@ -1,3 +1,5 @@
+import ProductClient from "./[id]/productClient";
+
 export default function Products() {
-  return <div>Products</div>;
+  return <ProductClient />;
 }

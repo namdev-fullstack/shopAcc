@@ -29,7 +29,7 @@ export default function Header() {
               <Shield className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">
-              ShopLQ
+              ShopDyLor
             </span>
           </div>
 
@@ -39,7 +39,7 @@ export default function Header() {
               <HomeIcon className="w-5 h-5 text-gray-500 group-hover:text-violet-600 transition-colors" />
               <span>Trang Chủ</span>
             </Link>
-            <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-red-600 transition-all font-semibold group">
+            <a href="/products" className="flex items-center space-x-2 text-gray-700 hover:text-red-600 transition-all font-semibold group">
               <Flame className="w-5 h-5 text-gray-500 group-hover:text-red-600 transition-colors" />
               <span>Danh Sách Acc</span>
             </a>

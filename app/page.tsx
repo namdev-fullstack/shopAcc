@@ -1,11 +1,10 @@
 
-import { ChevronRight, Star, Users, Zap, Flame, Shield, Award, Trophy } from 'lucide-react';
+import { ChevronRight, Star, Users, Zap, Flame, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import AccStore from '@/components/accStore';
-import AccCategorySection from '@/components/accCategorySection';
 import StatsSection from '@/components/StatsSection';
 import Link from 'next/link';
 import Timer from '@/components/timer';
@@ -39,152 +38,7 @@ export default async function Home() {
 
 
 
-  const popularGames = [
-    {
-      id: 1,
-      name: "Liên Quân Mobile",
-      description: "MOBA số 1 Việt Nam",
-      accounts: 2847,
-      priceFrom: 50000,
-      rating: 4.9,
-      image: "https://images.pexels.com/photos/7915437/pexels-photo-7915437.jpeg",
-      hot: true
-    },
-    {
-      id: 2,
-      name: "Liên Minh Huyền Thoại",
-      description: "MOBA PC kinh điển",
-      accounts: 1923,
-      priceFrom: 100000,
-      rating: 4.9,
-      image: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
-      hot: true
-    },
-    {
-      id: 3,
-      name: "Valorant",
-      description: "FPS chiến thuật hàng đầu",
-      accounts: 856,
-      priceFrom: 200000,
-      rating: 4.9,
-      image: "https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg",
-      hot: false
-    },
-    {
-      id: 4,
-      name: "PUBG Mobile",
-      description: "Battle Royale đình đám",
-      accounts: 1456,
-      priceFrom: 75000,
-      rating: 4.8,
-      image: "https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg",
-      hot: true
-    }
-  ];
 
-  const flashSaleItems = [
-    {
-      id: 1,
-      name: "Liên Quân Mobile",
-      category: "Thách Đấu",
-      originalPrice: 2599000,
-      salePrice: 1299000,
-      discount: 50,
-      sold: 98,
-      total: 267,
-      savings: 1300000,
-      image: "./acc.jpg"
-    },
-    {
-      id: 2,
-      name: "Liên Minh Huyền Thoại",
-      category: "Cao Thủ",
-      originalPrice: 1499000,
-      salePrice: 899000,
-      discount: 40,
-      sold: 89,
-      total: 189,
-      savings: 600000,
-      image: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg"
-    },
-    {
-      id: 3,
-      name: "Valorant",
-      category: "Bất Tử",
-      originalPrice: 3499000,
-      salePrice: 2199000,
-      discount: 37,
-      sold: 18,
-      total: 67,
-      savings: 1300000,
-      image: "https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg"
-    },
-    {
-      id: 4,
-      name: "PUBG Mobile",
-      category: "Ace Chính Phục",
-      originalPrice: 999000,
-      salePrice: 599000,
-      discount: 40,
-      sold: 124,
-      total: 156,
-      savings: 400000,
-      image: "https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg"
-    }
-  ];
-
-  const hotAccounts = [
-    {
-      id: 1,
-      name: "Liên Quân Mobile",
-      category: "Thách Đấu",
-      price: 2500000,
-      originalPrice: 3200000,
-      savings: 22,
-      accounts: 95,
-      views: 234,
-      image: "https://images.pexels.com/photos/7915437/pexels-photo-7915437.jpeg",
-      verified: true
-    },
-    {
-      id: 2,
-      name: "Liên Minh Huyền Thoại",
-      category: "Kim Cương I",
-      price: 1800000,
-      originalPrice: 2100000,
-      savings: 14,
-      accounts: 78,
-      views: 156,
-      image: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
-      verified: true
-    },
-    {
-      id: 3,
-      name: "Valorant",
-      category: "Bất Tử",
-      price: 3200000,
-      originalPrice: 3800000,
-      savings: 16,
-      accounts: 18,
-      views: 45,
-      image: "https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg",
-      verified: true
-    },
-    {
-      id: 4,
-      name: "PUBG Mobile",
-      category: "Ace Chính Phục",
-      price: 950000,
-      originalPrice: 1200000,
-      savings: 21,
-      accounts: 89,
-      views: 124,
-      image: "https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg",
-      verified: true
-    }
-  ];
-
- 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -291,6 +145,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[6px] gap-y-3 md:gap-6 md:px-2 px-[2px]">
             {data
               ?.filter((acc) => acc.is_sale) // chỉ lấy acc có sale
+              .slice(0, 4)
               .map((acc) => (
                 <Link key={acc.id} href={`/products/${acc.id}`}>
                   <Card className="group hover:shadow-xl hover:shadow-red-500/20 hover:scale-102 transition-all duration-500 border-0 bg-white hover:bg-gradient-to-br hover:from-white hover:to-red-50">
@@ -308,7 +163,7 @@ export default async function Home() {
                         </Badge>
                         <div className="absolute bottom-0 left-0">
                           <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
-                          {acc.categories?.[0]?.name}
+                            {acc.categories?.[0]?.name}
                             <div className="absolute -bottom-1 left-0 w-0 h-0 border-l-[6px] border-l-transparent border-t-[6px] border-t-orange-600 opacity-70"></div>
                           </div>
                         </div>
@@ -362,11 +217,11 @@ export default async function Home() {
                                 {formatPrice(Number(acc.fake_price))}
                               </span>
                             )}
-                           
+
                           </div>
                           <p className="text-[11px] sm:text-xs text-green-600 font-medium">
-                              Tiết kiệm {formatPrice(Number(acc.fake_price) - Number(acc.price))}
-                            </p>
+                            Tiết kiệm {formatPrice(Number(acc.fake_price) - Number(acc.price))}
+                          </p>
                         </div>
 
                         {/* Bottom row */}
@@ -394,30 +249,590 @@ export default async function Home() {
       </section>
 
       <AccStore />
+      {/* Acc Vip  */}
+      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+
+        <div className="container mx-auto px-3 md:px-6 relative">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-3">
+              Nick Liên Quân
+              <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent animate-text-shine">
+                -VIP
+              </span>
+            </h2>
+
+            <p className="text-gray-600 text-sm md:text-lg">
+              Acc hiếm với nhiều tướng, skin độc quyền. Dành cho game thủ muốn khẳng định đẳng cấp ngay khi bắt đầu.
+
+            </p>
+          </div>
+
+          {/* Grid list */}
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            {data
+              ?.filter((acc) => acc.category_id === "5a5130a7-dfaa-473f-9259-fbb00b500774")
+              .map((item) => (
+                <Link key={item.id} href={`/products/${item.id}`}>
+
+                  <Card
+                    key={item.id}
+                    className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
+                  >
+                    <CardContent className="p-0">
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <Image
+                          src={item.images?.[0]}
+                          alt={item.code}
+                          width={400}
+                          height={200}
+                          className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                        />
+                        {/* Giảm giá % */}
+                        <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
+                          -
+                          {Math.round(
+                            ((Number(item.fake_price) - Number(item.price)) /
+                              Number(item.fake_price)) *
+                            100
+                          )}
+                          %
+                        </Badge>
+
+                        {/* Sale hot */}
+                        <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+                          <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
+                          <span className="font-bold text-xs">Hot</span>
+                        </Badge>
+
+                        {/* Tag dưới ảnh */}
+                        <div className="absolute bottom-0 left-0">
+                          <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+                            Acc Vip
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 sm:p-4">
+                        {/* Title */}
+                        <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
+                          {item.code}
+                        </h3>
+
+                        {/* Rank */}
+                        <div className="flex items-center space-x-1 mb-3">
+                          <Trophy className="w-3 h-3 text-yellow-500" />
+                          <span className="text-xs sm:text-sm font-medium text-gray-700">
+                            Rank: {item.rank}
+                          </span>
+                        </div>
+
+                        {/* Extra info */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                          <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Users className="w-3 h-3 text-blue-500 font-bold" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.heroes_count} Tướng
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Star className="w-3 h-3 text-pink-500" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.skins_count} Skin
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Price */}
+                        <div className="mb-3">
+                          <div className="flex items-center space-x-1 mb-1">
+                            <span className="md:text-lg text-xs font-bold text-red-500">
+                              {formatPrice(item.price)}
+                            </span>
+                            <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                              {formatPrice(item.fake_price)}
+                            </span>
+                          </div>
+                          <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                            Tiết kiệm {formatPrice(item.fake_price - item.price)}
+                          </p>
+                        </div>
+
+                        {/* Bottom row */}
+                        <div className="md:flex items-center justify-between hidden">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-3 h-3 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                          </div>
+                          <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                            Mua
+                            <ChevronRight className="w-3 h-3 ml-1" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+          </div>
+
+
+        </div>
+
+        <div className="text-center mt-10">
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
+          >
+            Xem tất cả tài khoản
+            <ChevronRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </section>
+
+
+      {/* acc reg  */}
+      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+
+        <div className="container mx-auto px-3 md:px-6 relative">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-3">
+              Nick Liên Quân
+              <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent animate-text-shine">
+                -Reg
+              </span>
+            </h2>
+
+            <p className="text-gray-600 text-sm md:text-lg">
+              Acc được đăng ký sẵn, chưa tham gia trận đấu nào. Có ít nhất 1 skin VIP.
+
+
+            </p>
+          </div>
+
+          {/* Grid list */}
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            {data
+              ?.filter((acc) => acc.category_id === "e8f69f79-cebf-429e-a7fa-8ab7c55a9da9")
+              .map((item) => (
+                <Card
+                  key={item.id}
+                  className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
+                >
+                  <CardContent className="p-0">
+                    <div className="relative overflow-hidden rounded-t-lg">
+                      <Image
+                        src={item.images?.[0]}
+                        alt={item.code}
+                        width={400}
+                        height={200}
+                        className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                      />
+                      {/* Giảm giá % */}
+                      <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
+                        -
+                        {Math.round(
+                          ((Number(item.fake_price) - Number(item.price)) /
+                            Number(item.fake_price)) *
+                          100
+                        )}
+                        %
+                      </Badge>
+
+                      {/* Sale hot */}
+                      <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+                        <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
+                        <span className="font-bold text-xs">Hot</span>
+                      </Badge>
+
+                      {/* Tag dưới ảnh */}
+                      <div className="absolute bottom-0 left-0">
+                        <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+                          Acc Reg
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-3 sm:p-4">
+                      {/* Title */}
+                      <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
+                        {item.code}
+                      </h3>
+
+                      {/* Rank */}
+                      <div className="flex items-center space-x-1 mb-3">
+                        <Trophy className="w-3 h-3 text-yellow-500" />
+                        <span className="text-xs sm:text-sm font-medium text-gray-700">
+                          Rank: {item.rank}
+                        </span>
+                      </div>
+
+                      {/* Extra info */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                        <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                          <Users className="w-3 h-3 text-blue-500 font-bold" />
+                          <span className="text-[11px] text-gray-700 font-bold">
+                            {item.heroes_count} Tướng
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                          <Star className="w-3 h-3 text-pink-500" />
+                          <span className="text-[11px] text-gray-700 font-bold">
+                            {item.skins_count} Skin
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Price */}
+                      <div className="mb-3">
+                        <div className="flex items-center space-x-1 mb-1">
+                          <span className="md:text-lg text-xs font-bold text-red-500">
+                            {formatPrice(item.price)}
+                          </span>
+                          <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                            {formatPrice(item.fake_price)}
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                          Tiết kiệm {formatPrice(item.fake_price - item.price)}
+                        </p>
+                      </div>
+
+                      {/* Bottom row */}
+                      <div className="md:flex items-center justify-between hidden">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-3 h-3 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                        <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                          Mua
+                          <ChevronRight className="w-3 h-3 ml-1" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+
+
+        </div>
+
+        <div className="text-center mt-10">
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
+          >
+            Xem tất cả tài khoản
+            <ChevronRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </section>
+
+
+      {/* Acc Trắng Thông Tin  */}
+      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+
+        <div className="container mx-auto px-3 md:px-6 relative">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-3">
+              Nick Liên Quân
+              <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent animate-text-shine">
+                -Trắng Thông Tin
+              </span>
+            </h2>
+
+            <p className="text-gray-600 text-sm md:text-lg">
+              Acc sạch 100%, chưa gắn bất kỳ thông tin nào. Bạn có thể đổi theo ý mình và sử dụng lâu dài, an toàn tuyệt đối.
+            </p>
+          </div>
+
+          {/* Grid list */}
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            {data
+              ?.filter((acc) => acc.category_id === "f03fa5a8-7609-4c71-a8d8-af2f4ece3d89")
+              .map((item) => (
+                <Link key={item.id} href={`/products/${item.id}`}>
+
+                  <Card
+                    key={item.id}
+                    className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
+                  >
+                    <CardContent className="p-0">
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <Image
+                          src={item.images?.[0]}
+                          alt={item.code}
+                          width={400}
+                          height={200}
+                          className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                        />
+                        {/* Giảm giá % */}
+                        <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
+                          -
+                          {Math.round(
+                            ((Number(item.fake_price) - Number(item.price)) /
+                              Number(item.fake_price)) *
+                            100
+                          )}
+                          %
+                        </Badge>
+
+                        {/* Sale hot */}
+                        <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+                          <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
+                          <span className="font-bold text-xs">Hot</span>
+                        </Badge>
+
+                        {/* Tag dưới ảnh */}
+                        <div className="absolute bottom-0 left-0">
+                          <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+                            Acc Trắng TT
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 sm:p-4">
+                        {/* Title */}
+                        <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
+                          {item.code}
+                        </h3>
+
+                        {/* Rank */}
+                        <div className="flex items-center space-x-1 mb-3">
+                          <Trophy className="w-3 h-3 text-yellow-500" />
+                          <span className="text-xs sm:text-sm font-medium text-gray-700">
+                            Rank: {item.rank}
+                          </span>
+                        </div>
+
+                        {/* Extra info */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                          <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Users className="w-3 h-3 text-blue-500 font-bold" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.heroes_count} Tướng
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Star className="w-3 h-3 text-pink-500" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.skins_count} Skin
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Price */}
+                        <div className="mb-3">
+                          <div className="flex items-center space-x-1 mb-1">
+                            <span className="md:text-lg text-xs font-bold text-red-500">
+                              {formatPrice(item.price)}
+                            </span>
+                            <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                              {formatPrice(item.fake_price)}
+                            </span>
+                          </div>
+                          <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                            Tiết kiệm {formatPrice(item.fake_price - item.price)}
+                          </p>
+                        </div>
+
+                        {/* Bottom row */}
+                        <div className="md:flex items-center justify-between hidden">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-3 h-3 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                          </div>
+                          <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                            Mua
+                            <ChevronRight className="w-3 h-3 ml-1" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+          </div>
+
+
+        </div>
+
+        <div className="text-center mt-10">
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
+          >
+            Xem tất cả tài khoản
+            <ChevronRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </section>
+
+
+      {/* Acc Trắng Thông Tin  */}
+      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+
+        <div className="container mx-auto px-3 md:px-6 relative">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-extrabold mb-3">
+              Nick Liên Quân
+              <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent animate-text-shine">
+                -Có Thông Tin
+              </span>
+            </h2>
+
+            <p className="text-gray-600 text-sm md:text-lg">
+              Acc có sẵn thông tin cơ bản, giá rẻ hơn.</p>
+          </div>
+
+          {/* Grid list */}
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            {data
+              ?.filter((acc) => acc.category_id === "32972a69-bb12-4643-ba69-fe68e57116c4")
+              .map((item) => (
+                <Link key={item.id} href={`/products/${item.id}`}>
+
+                  <Card
+                    key={item.id}
+                    className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
+                  >
+                    <CardContent className="p-0">
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <Image
+                          src={item.images?.[0]}
+                          alt={item.code}
+                          width={400}
+                          height={200}
+                          className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                        />
+                        {/* Giảm giá % */}
+                        <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
+                          -
+                          {Math.round(
+                            ((Number(item.fake_price) - Number(item.price)) /
+                              Number(item.fake_price)) *
+                            100
+                          )}
+                          %
+                        </Badge>
+
+                        {/* Sale hot */}
+                        <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+                          <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
+                          <span className="font-bold text-xs">Hot</span>
+                        </Badge>
+
+                        {/* Tag dưới ảnh */}
+                        <div className="absolute bottom-0 left-0">
+                          <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+                            Acc Có TT
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 sm:p-4">
+                        {/* Title */}
+                        <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
+                          {item.code}
+                        </h3>
+
+                        {/* Rank */}
+                        <div className="flex items-center space-x-1 mb-3">
+                          <Trophy className="w-3 h-3 text-yellow-500" />
+                          <span className="text-xs sm:text-sm font-medium text-gray-700">
+                            Rank: {item.rank}
+                          </span>
+                        </div>
+
+                        {/* Extra info */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                          <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Users className="w-3 h-3 text-blue-500 font-bold" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.heroes_count} Tướng
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Star className="w-3 h-3 text-pink-500" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.skins_count} Skin
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Price */}
+                        <div className="mb-3">
+                          <div className="flex items-center space-x-1 mb-1">
+                            <span className="md:text-lg text-xs font-bold text-red-500">
+                              {formatPrice(item.price)}
+                            </span>
+                            <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                              {formatPrice(item.fake_price)}
+                            </span>
+                          </div>
+                          <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                            Tiết kiệm {formatPrice(item.fake_price - item.price)}
+                          </p>
+                        </div>
+
+                        {/* Bottom row */}
+                        <div className="md:flex items-center justify-between hidden">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-3 h-3 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                          </div>
+                          <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                            Mua
+                            <ChevronRight className="w-3 h-3 ml-1" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+          </div>
+
+
+        </div>
+
+        <div className="text-center mt-10">
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
+          >
+            Xem tất cả tài khoản
+            <ChevronRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </section>
 
 
 
-
-
-      <AccCategorySection
-        title="Trắng Thông Tin"
-        description="Acc sạch 100%, chưa gắn bất kỳ thông tin nào. Bạn có thể đổi theo ý mình và sử dụng lâu dài, an toàn tuyệt đối."
-      />
-
-      <AccCategorySection
-        title="Reg"
-        description="Acc được đăng ký sẵn, chưa tham gia trận đấu nào. Có ít nhất 1 skin VIP."
-      />
-
-      <AccCategorySection
-        title="Có Thông Tin"
-        description="Acc có sẵn thông tin cơ bản, giá rẻ hơn."
-      />
-
-      <AccCategorySection
-        title="VIP"
-        description="Acc hiếm với nhiều tướng, skin độc quyền. Dành cho game thủ muốn khẳng định đẳng cấp ngay khi bắt đầu."
-      />
 
 
 

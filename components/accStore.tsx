@@ -4,20 +4,21 @@ import Image from "next/image"
 import { Layers, Crown, Flame, Star } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
 
 const accounts = [
   {
     id: 1,
     title: "Nick Liên Quân Trắng Thông Tin",
     img: "./bannerTuChon.jpg",
-    count: 16853,
+    count: 4387,
     tag: { text: "Trắng TT", icon: Layers, color: "from-blue-500 to-cyan-500" },
   },
   {
     id: 2,
     title: "Nick Liên Quân Reg",
     img: "./bannerReg.jpeg",
-    count: 16899,
+    count: 8534,
     tag: { text: "Reg", icon: Star, color: "from-purple-500 to-pink-500" },
   },
   {
@@ -31,7 +32,7 @@ const accounts = [
     id: 4,
     title: "Acc Liên Quân VIP",
     img: "./bannerNickVip.jpeg",
-    count: 16967,
+    count: 1390,
     tag: { text: "VIP", icon: Flame, color: "from-red-500 to-pink-500" },
   },
 ]
@@ -54,6 +55,7 @@ export default function AccStore() {
         {/* Grid list */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
           {accounts.map((acc) => (
+            <Link href='/products'>
             <Card
               key={acc.id}
               className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
@@ -103,6 +105,7 @@ export default function AccStore() {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>
