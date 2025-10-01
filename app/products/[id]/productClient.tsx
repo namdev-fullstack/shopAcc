@@ -11,7 +11,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ChevronRight, Star, Trophy, Users, Search } from "lucide-react"
 import Link from "next/link"
 
-// format tiền
 function formatPrice(num: number) {
   return num.toLocaleString("vi-VN") + "₫"
 }
@@ -40,7 +39,6 @@ export default function ProductsPage() {
   const [page, setPage] = useState(1)
   const [pageSize] = useState(8)
 
-  // fetch data
   useEffect(() => {
     const fetchData = async () => {
       const supabase = createClient()
@@ -82,11 +80,15 @@ export default function ProductsPage() {
     fetchCategories()
   }, [])
 
+  // reset page khi filter/search thay đổi
+  useEffect(() => {
+    setPage(1)
+  }, [selectedCategory, search])
+
   // filter & search
   const filteredData = data.filter((acc) => {
     const matchSearch = acc.code.toLowerCase().includes(search.toLowerCase())
-    const matchCategory =
-      selectedCategory === "all" || acc.category_id === selectedCategory
+    const matchCategory = selectedCategory === "all" || acc.category_id === selectedCategory
     return matchSearch && matchCategory
   })
 
@@ -129,123 +131,98 @@ export default function ProductsPage() {
       {/* grid products */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
         {paginatedData.map((item) => (
-            <Link href={`/products/${item.id}`} key={item.id}>
-          <Card
-            key={item.id}
-            className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
-          >
-            <CardContent className="p-0">
-              <div className="relative overflow-hidden rounded-t-lg">
-                <Image
-                  src={item.images?.[0]}
-                  alt={item.code}
-                  width={400}
-                  height={200}
-                  className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
-                />
-                {/* Giảm giá % */}
-                <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
-                  -
-                  {Math.round(
-                    ((Number(item.fake_price) - Number(item.price)) /
-                      Number(item.fake_price)) *
-                      100
-                  )}
-                  %
-                </Badge>
-
-                {/* Hot */}
-                {item.is_sale && (
-                  <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
-                    <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
-                    <span className="font-bold text-xs">Hot</span>
+          <Link href={`/products/${item.id}`} key={item.id}>
+            <Card
+              key={item.id}
+              className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-[1px] border-gray-200 bg-white rounded-xl shadow-md"
+            >
+              <CardContent className="p-0">
+                <div className="relative overflow-hidden rounded-t-lg">
+                  <Image
+                    src={item.images?.[0]}
+                    alt={item.code}
+                    width={400}
+                    height={200}
+                    className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                  />
+                  {/* Giảm giá % */}
+                  <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
+                    -
+                    {Math.round(
+                      ((Number(item.fake_price) - Number(item.price)) / Number(item.fake_price)) * 100
+                    )}
+                    %
                   </Badge>
-                )}
-              </div>
 
-              <div className="p-3 sm:p-4">
-                <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
-                  {item.code}
-                </h3>
-
-                {/* Rank */}
-                <div className="flex items-center space-x-1 mb-3">
-                  <Trophy className="w-3 h-3 text-yellow-500" />
-                  <span className="text-xs sm:text-sm font-medium text-gray-700">
-                    Rank: {item.rank}
-                  </span>
+                  {/* Hot */}
+                  {item.is_sale && (
+                    <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+                      <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
+                      <span className="font-bold text-xs">Hot</span>
+                    </Badge>
+                  )}
                 </div>
 
-                {/* Extra info */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                  <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
-                    <Users className="w-3 h-3 text-blue-500 font-bold" />
-                    <span className="text-[11px] text-gray-700 font-bold">
-                      {item.heroes_count} Tướng
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
-                    <Star className="w-3 h-3 text-pink-500" />
-                    <span className="text-[11px] text-gray-700 font-bold">
-                      {item.skins_count} Skin
-                    </span>
-                  </div>
-                </div>
+                <div className="p-3 sm:p-4">
+                  <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">{item.code}</h3>
 
-                {/* Price */}
-                <div className="mb-3">
-                  <div className="flex items-center space-x-1 mb-1">
-                    <span className="md:text-lg text-xs font-bold text-red-500">
-                      {formatPrice(item.price)}
-                    </span>
-                    <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
-                      {formatPrice(item.fake_price)}
+                  <div className="flex items-center space-x-1 mb-3">
+                    <Trophy className="w-3 h-3 text-yellow-500" />
+                    <span className="text-xs sm:text-sm font-medium text-gray-700">
+                      Rank: {item.rank}
                     </span>
                   </div>
-                  <p className="text-[11px] sm:text-xs text-green-600 font-medium">
-                    Tiết kiệm {formatPrice(item.fake_price - item.price)}
-                  </p>
-                </div>
 
-                {/* Bottom row */}
-                <div className="md:flex items-center justify-between hidden">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-3 h-3 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
+                  <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mb-3">
+                    <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                      <Users className="w-3 h-3 text-blue-500 font-bold" />
+                      <span className="text-[11px] text-gray-700 font-bold">{item.heroes_count} Tướng</span>
+                    </div>
+                    <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                      <Star className="w-3 h-3 text-pink-500" />
+                      <span className="text-[11px] text-gray-700 font-bold">{item.skins_count} Skin</span>
+                    </div>
                   </div>
-                  <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
-                    Mua
-                    <ChevronRight className="w-3 h-3 ml-1" />
-                  </Button>
+
+                  <div className="mb-3">
+                    <div className="flex items-center space-x-1 mb-1">
+                      <span className="md:text-lg text-xs font-bold text-red-500">{formatPrice(item.price)}</span>
+                      <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                        {formatPrice(item.fake_price)}
+                      </span>
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                      Tiết kiệm {formatPrice(item.fake_price - item.price)}
+                    </p>
+                  </div>
+
+                  <div className="md:flex items-center justify-between hidden">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                      Mua
+                      <ChevronRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
           </Link>
         ))}
       </div>
 
       {/* pagination */}
       <div className="flex justify-center items-center gap-3 mt-6">
-        <Button
-          variant="outline"
-          disabled={page === 1}
-          onClick={() => setPage((p) => p - 1)}
-        >
+        <Button variant="outline" disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
           Trước
         </Button>
         <span>
           Trang {page}/{totalPages}
         </span>
-        <Button
-          variant="outline"
-          disabled={page === totalPages}
-          onClick={() => setPage((p) => p + 1)}
-        >
+        <Button variant="outline" disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
           Sau
         </Button>
       </div>
