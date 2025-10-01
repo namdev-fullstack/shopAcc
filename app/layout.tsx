@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google';
 import Footer from '@/components/footer';
 import { Toaster } from 'sonner';
 import { AuthProvider } from '@/context/AuthContext';
+import ScrollToTop from '@/components/ScrollToTop';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -128,7 +129,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
       <AuthProvider>
-
+      <ScrollToTop />
       <Header />
 
         {children}

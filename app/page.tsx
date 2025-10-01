@@ -389,7 +389,9 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-            Xem tất cả tài khoản
+            <Link href="/products">
+              Xem tất cả tài khoản
+            </Link>
             <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
@@ -534,7 +536,9 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-            Xem tất cả tài khoản
+           <Link href="/products">
+              Xem tất cả tài khoản
+            </Link>
             <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
@@ -680,7 +684,9 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-            Xem tất cả tài khoản
+          <Link href="/products">
+              Xem tất cả tài khoản
+            </Link>
             <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
@@ -825,7 +831,9 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-            Xem tất cả tài khoản
+           <Link href="/products">
+              Xem tất cả tài khoản
+            </Link>
             <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
