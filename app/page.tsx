@@ -428,6 +428,8 @@ export default async function Home() {
               ?.filter((acc) => acc.category_id === "e8f69f79-cebf-429e-a7fa-8ab7c55a9da9")
               .slice(0, 4)
               .map((item) => (
+                <Link key={item.id} href={`/products/${item.id}`}>
+
                 <Card
                   key={item.id}
                   className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
@@ -529,6 +531,8 @@ export default async function Home() {
                     </div>
                   </CardContent>
                 </Card>
+                </Link>
+
               ))}
           </div>
 
