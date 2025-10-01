@@ -43,10 +43,10 @@ export default function Header() {
               <Flame className="w-5 h-5 text-gray-500 group-hover:text-red-600 transition-colors" />
               <span>Danh Sách Acc</span>
             </Link>
-            <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-all font-semibold group">
+            <Link href="https://www.tiktok.com/@ronaldylor_04" target="_blank" className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-all font-semibold group">
               <Phone className="w-5 h-5 text-gray-500 group-hover:text-green-600 transition-colors" />
               <span>Liên Hệ</span>
-            </a>
+            </Link>
           </nav>
 
           {/* Action buttons */}
@@ -100,9 +100,9 @@ export default function Header() {
                 <Flame className="w-5 h-5 text-pink-500" /> Danh Sách Acc
               </Link>
               
-              <a href="#" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-green-600 transition-colors">
+              <Link  href="https://www.tiktok.com/@ronaldylor_04" target="_blank" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-green-600 transition-colors">
                 <Phone className="w-5 h-5 text-green-500" /> Liên Hệ
-              </a>
+              </Link>
 
               <div className="border-t border-gray-200/50 pt-4 flex flex-col space-y-3">
                 <DepositButton />

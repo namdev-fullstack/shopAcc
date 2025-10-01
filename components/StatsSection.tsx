@@ -1,5 +1,5 @@
 "use client"
-import { Users, Wallet, ShoppingBag, Star, Music } from "lucide-react"
+import { Users, Wallet, ShoppingBag, Star, Music, BadgeCent } from "lucide-react"
 
 const stats = [
   {
@@ -19,7 +19,7 @@ const stats = [
   {
     id: 3,
     label: "Cộng Tác Viên",
-    value: "350+",
+    value: "50+",
     icon: Users,
     color: "from-purple-500 to-pink-500",
   },
@@ -33,8 +33,8 @@ const stats = [
   {
     id: 5,
     label: "Thuộc Tiktoker",
-    value: "Zanboy",
-    icon: Music, // có thể thay bằng logo TikTok svg riêng
+    value: "DyLor",
+    icon: BadgeCent, // có thể thay bằng logo TikTok svg riêng
     color: "from-black to-pink-500",
   },
 ]
