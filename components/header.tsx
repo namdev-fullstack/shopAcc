@@ -24,14 +24,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-r from-violet-500 to-blue-500 rounded-lg flex items-center justify-center">
               <Shield className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text text-transparent">
               ShopDyLor
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -39,10 +39,10 @@ export default function Header() {
               <HomeIcon className="w-5 h-5 text-gray-500 group-hover:text-violet-600 transition-colors" />
               <span>Trang Chủ</span>
             </Link>
-            <a href="/products" className="flex items-center space-x-2 text-gray-700 hover:text-red-600 transition-all font-semibold group">
+            <Link href="/products" className="flex items-center space-x-2 text-gray-700 hover:text-red-600 transition-all font-semibold group">
               <Flame className="w-5 h-5 text-gray-500 group-hover:text-red-600 transition-colors" />
               <span>Danh Sách Acc</span>
-            </a>
+            </Link>
             <a href="#" className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-all font-semibold group">
               <Phone className="w-5 h-5 text-gray-500 group-hover:text-green-600 transition-colors" />
               <span>Liên Hệ</span>
@@ -96,12 +96,10 @@ export default function Header() {
               <Link href="/" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-violet-600 transition-colors">
                 <HomeIcon className="w-5 h-5 text-violet-500" /> Trang Chủ
               </Link>
-              <a href="#" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-pink-600 transition-colors">
-                <Flame className="w-5 h-5 text-pink-500" /> Game Hot
-              </a>
-              <a href="#" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-orange-600 transition-colors">
-                <Zap className="w-5 h-5 text-orange-500" /> Flash Sale
-              </a>
+              <Link href="/products" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-pink-600 transition-colors">
+                <Flame className="w-5 h-5 text-pink-500" /> Danh Sách Acc
+              </Link>
+              
               <a href="#" className="flex items-center gap-3 text-gray-800 font-semibold hover:text-green-600 transition-colors">
                 <Phone className="w-5 h-5 text-green-500" /> Liên Hệ
               </a>

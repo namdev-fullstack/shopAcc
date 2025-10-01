@@ -94,8 +94,8 @@ export default function DetailPage({ data }: { data: any }) {
       {/* Thông tin acc */}
       <div className="flex flex-col gap-3">
         {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-bold">
-          Acc Liên Quân {data.categories?.name}
+        <h1 className="text-xl md:text-2xl font-bold">
+          {data.categories?.name}
         </h1>
         <p>
           Mã: <span className="font-semibold">#{data.code}</span>
@@ -136,16 +136,16 @@ export default function DetailPage({ data }: { data: any }) {
         {/* Giá */}
         <div className="mb-3">
           <div className="flex items-center space-x-2 mb-1">
-            <span className="md:text-xl text-xs font-bold text-blue-500">
+            <span className="md:text-xl text-lg font-bold text-blue-500">
               ATM/MOMO
             </span>
-            <span className="md:text-lg text-xs font-bold text-red-500">
+            <span className="md:text-lg text-lg font-bold text-red-500">
               {formatPrice(Number(data.price))}
             </span>
             
             {data.fake_price && (
               <span
-                className="text-base sm:text-xs text-gray-400 
+                className="md:text-lg text-lg text-gray-400 
                 line-through inline-block 
                 max-w-[60px] sm:max-w-[100px] md:max-w-none"
               >
@@ -155,7 +155,7 @@ export default function DetailPage({ data }: { data: any }) {
           </div>
 
           {data.fake_price && (
-            <p className="md:text-base text-xs text-green-600 font-medium">
+            <p className="md:text-xl text-lg text-green-600 font-medium">
               Tiết kiệm{" "}
               {formatPrice(Number(data.fake_price) - Number(data.price))}
             </p>
@@ -169,13 +169,13 @@ export default function DetailPage({ data }: { data: any }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
           <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
             <Users className="w-3 h-3 text-blue-500 font-bold" />
-            <span className="text-[11px] md:text-base text-gray-700 font-bold">
+            <span className="text-base md:text-lg text-gray-700 font-bold">
               {data.heroes_count} Tướng
             </span>
           </div>
           <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
             <Star className="w-3 h-3 text-pink-500" />
-            <span className="text-[11px] md:text-base text-gray-700 font-bold">
+            <span className="text-base md:text-lg text-gray-700 font-bold">
               {data.skins_count} Skin
             </span>
           </div>

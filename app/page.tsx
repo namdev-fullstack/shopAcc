@@ -107,7 +107,9 @@ export default async function Home() {
                      text-white font-semibold shadow-lg 
                      hover:shadow-blue-400/50 hover:scale-105 transition 
                      text-sm sm:text-base">
+                  <Link href='/products'>
                   Danh Sách Acc
+                  </Link>
                 </button>
 
                 <button className="px-3 py-2 rounded-md sm:px-8 sm:py-3 sm:rounded-2xl 
@@ -124,7 +126,7 @@ export default async function Home() {
       </section>
 
       {/* Flash Sale Section */}
-      <section className="py-16 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 relative overflow-hidden">
+      <section className="md:py-12 py-4 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 relative overflow-hidden">
         <div className="container mx-auto md:px-4 px-[2px]">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 px-6 py-3 text-lg animate-pulse shadow-xl">
@@ -250,7 +252,7 @@ export default async function Home() {
 
       <AccStore />
       {/* Acc Vip  */}
-      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+      <section className="md:py-12 py-4 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
 
         <div className="container mx-auto px-3 md:px-6 relative">
           {/* Heading */}
@@ -273,6 +275,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {data
               ?.filter((acc) => acc.category_id === "5a5130a7-dfaa-473f-9259-fbb00b500774")
+              .slice(0, 4)
               .map((item) => (
                 <Link key={item.id} href={`/products/${item.id}`}>
 
@@ -399,7 +402,7 @@ export default async function Home() {
 
 
       {/* acc reg  */}
-      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+      <section className="md:py-12 py-6 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
 
         <div className="container mx-auto px-3 md:px-6 relative">
           {/* Heading */}
@@ -423,6 +426,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {data
               ?.filter((acc) => acc.category_id === "e8f69f79-cebf-429e-a7fa-8ab7c55a9da9")
+              .slice(0, 4)
               .map((item) => (
                 <Card
                   key={item.id}
@@ -546,7 +550,7 @@ export default async function Home() {
 
 
       {/* Acc Trắng Thông Tin  */}
-      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+      <section className="md:py-12 py-6 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
 
         <div className="container mx-auto px-3 md:px-6 relative">
           {/* Heading */}
@@ -568,6 +572,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {data
               ?.filter((acc) => acc.category_id === "f03fa5a8-7609-4c71-a8d8-af2f4ece3d89")
+              .slice(0, 4)
               .map((item) => (
                 <Link key={item.id} href={`/products/${item.id}`}>
 
@@ -694,7 +699,7 @@ export default async function Home() {
 
 
       {/* Acc Trắng Thông Tin  */}
-      <section className="py-16 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
+      <section className="md:py-12 py-4 my-10 bg-gradient-to-b from-white via-blue-50 to-red-50 relative overflow-hidden">
 
         <div className="container mx-auto px-3 md:px-6 relative">
           {/* Heading */}
@@ -715,6 +720,7 @@ export default async function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {data
               ?.filter((acc) => acc.category_id === "32972a69-bb12-4643-ba69-fe68e57116c4")
+              .slice(0, 4)
               .map((item) => (
                 <Link key={item.id} href={`/products/${item.id}`}>
 

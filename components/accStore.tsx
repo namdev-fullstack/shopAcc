@@ -39,7 +39,7 @@ const accounts = [
 
 export default function AccStore() {
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 relative overflow-hidden">
+    <section className="py-6 md:py-8 bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 relative overflow-hidden">
       <div className="container mx-auto px-3 md:px-6 relative">
         {/* Heading */}
         <div className="text-center mb-12">
