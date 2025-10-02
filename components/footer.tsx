@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="w-8 h-8 bg-gradient-to-r from-violet-500 to-blue-500 rounded-lg flex items-center justify-center">
             <Shield className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold">Game Phổ Biến</span>
+          <span className="text-xl font-bold">ShopLiênQuân</span>
         </div>
         <p className="text-gray-400 mb-4">
           Nền tảng mua bán tài khoản game uy tín và an toàn hàng đầu Việt Nam.
@@ -67,7 +67,7 @@ export default function Footer() {
 
     <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
       <p className="text-gray-400 mb-4 md:mb-0">
-        © 2024 Game Phổ Biến. All rights reserved.
+        © 2023 ShopLiênQuân. All rights reserved.
       </p>
       <div className="flex items-center space-x-6 text-sm text-gray-400">
         <span className="flex items-center">
