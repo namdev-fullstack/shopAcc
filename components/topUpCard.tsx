@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent } from "@/components/ui/card"
 import { createClient } from "@/utils/supabase/client"
+import { AlertTriangle, ArrowRight } from "lucide-react"
 
 const supabase = createClient()
 
@@ -67,7 +68,9 @@ export default function TopUpCard() {
     if (error) {
       toast.error("Có lỗi xảy ra: " + error.message)
     } else {
-      toast.success("Nạp thẻ thành công!")
+      toast.error("Nạp thẻ thất bại? Vui lòng liên hệ để xác minh thẻ.", {
+        duration: 8000, // hiển thị 8 giây
+      })
       setNetwork("")
       setDenomination("")
       setSerial("")
@@ -76,51 +79,100 @@ export default function TopUpCard() {
   }
 
   return (
-    <Card className="border">
-      <CardContent>
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <Select value={network} onValueChange={setNetwork} disabled={loading}>
-            <SelectTrigger>
-              <SelectValue placeholder="Chọn nhà mạng" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Viettel">Viettel</SelectItem>
-              <SelectItem value="Mobifone">Mobifone</SelectItem>
-              <SelectItem value="Vinaphone">Vinaphone</SelectItem>
-            </SelectContent>
-          </Select>
+    <>
+      <Card className="border">
 
-          <Select value={denomination} onValueChange={setDenomination} disabled={loading}>
-            <SelectTrigger>
-              <SelectValue placeholder="Chọn mệnh giá" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="10000">10.000₫</SelectItem>
-              <SelectItem value="20000">20.000₫</SelectItem>
-              <SelectItem value="50000">50.000₫</SelectItem>
-              <SelectItem value="100000">100.000₫</SelectItem>
-              <SelectItem value="500000">500.000₫</SelectItem>
-            </SelectContent>
-          </Select>
+        <CardContent className="pt-6">
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <Select value={network} onValueChange={setNetwork} disabled={loading}>
+              <SelectTrigger>
+                <SelectValue placeholder="Chọn nhà mạng" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Viettel">Viettel</SelectItem>
+                <SelectItem value="Mobifone">Mobifone</SelectItem>
+                <SelectItem value="Vinaphone">Vinaphone</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Input
-            placeholder="Số serial"
-            value={serial}
-            onChange={(e) => setSerial(e.target.value)}
-            disabled={loading}
-          />
-          <Input
-            placeholder="Mã thẻ"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            disabled={loading}
-          />
+            <Select value={denomination} onValueChange={setDenomination} disabled={loading}>
+              <SelectTrigger>
+                <SelectValue placeholder="Chọn mệnh giá" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10000" className="hover:bg-indigo-50 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    10.000₫
+                    <ArrowRight className="w-4 h-4 text-green-500" />
+                    <span className="text-green-500 font-medium">Nhận 100%</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="20000" className="hover:bg-indigo-50 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    20.000₫
+                    <ArrowRight className="w-4 h-4 text-green-500" />
+                    <span className="text-green-500 font-medium">Nhận 100%</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="50000" className="hover:bg-indigo-50 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    50.000₫
+                    <ArrowRight className="w-4 h-4 text-green-500" />
+                    <span className="text-green-500 font-medium">Nhận 100%</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="100000" className="hover:bg-indigo-50 cursor-pointer"> 
+                  <div className="flex items-center gap-4">
+                    100.000₫
+                    <ArrowRight className="w-4 h-4 text-green-500" />
+                    <span className="text-green-500 font-medium">Nhận 100%</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="500000" className="hover:bg-indigo-50 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    500.000₫
+                    <ArrowRight className="w-4 h-4 text-green-500" />
+                    <span className="text-green-500 font-medium">Nhận 100%</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="500000" className="hover:bg-indigo-50 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    1.000.000₫
+                    <ArrowRight className="w-4 h-4 text-green-500" />
+                    <span className="text-green-500 font-medium">Nhận 100%</span>
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Button type="submit" disabled={loading} className="bg-purple-500 hover:bg-purple-600 text-white">
-            {loading ? "Đang xử lý..." : "Nạp thẻ"}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+            <Input
+              placeholder="Số serial"
+              value={serial}
+              onChange={(e) => setSerial(e.target.value)}
+              disabled={loading}
+            />
+            <Input
+              placeholder="Mã thẻ"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              disabled={loading}
+            />
+
+            <Button type="submit" disabled={loading} className="bg-purple-500 hover:bg-purple-600 text-white">
+              {loading ? "Đang xử lý..." : "Nạp thẻ"}
+            </Button>
+          </form>
+        </CardContent>
+
+
+      </Card>
+      <div className="flex items-center flex-wrap gap-2 text-red-600 text-sm mt-4 pl-2">
+        <AlertTriangle className="w-3 h-3" />
+        <span className="font-medium">Chú ý:</span>
+        <span className="text-slate-700">
+          Nạp thẻ sai mệnh giá mất <span className="font-medium text-red-600">100% giá trị thẻ</span>.
+        </span>
+      </div>
+    </>
   )
 }

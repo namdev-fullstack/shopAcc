@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Flame, Star, Tag, Users } from "lucide-react";
+import { Flame, ShieldCheck, Star, Tag, Users } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import Payment from "./payment";
 
@@ -116,6 +116,12 @@ export default function DetailPage({ data }: { data: any }) {
             </span>
           )}
           {data.is_sale && data.fake_price && (
+
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+               <span className="md:text-lg text-base font-bold text-blue-500">
+            ATM/MOMO/CARD(Thẻ Cào)
+          </span>
+       
             <div
               className="flex items-center gap-1 text-white font-semibold text-xs sm:text-sm
               bg-gradient-to-r from-red-500 to-pink-500
@@ -126,23 +132,23 @@ export default function DetailPage({ data }: { data: any }) {
               {Math.round(
                 ((Number(data.fake_price) - Number(data.price)) /
                   Number(data.fake_price)) *
-                  100
+                100
               )}
               %
+            </div>
             </div>
           )}
         </div>
 
         {/* Giá */}
         <div className="mb-3">
-          <div className="flex items-center space-x-2 mb-1">
-            <span className="md:text-xl text-lg font-bold text-blue-500">
-              ATM/MOMO
-            </span>
+         
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+
             <span className="md:text-lg text-lg font-bold text-red-500">
               {formatPrice(Number(data.price))}
             </span>
-            
+
             {data.fake_price && (
               <span
                 className="md:text-lg text-lg text-gray-400 
@@ -152,19 +158,17 @@ export default function DetailPage({ data }: { data: any }) {
                 {formatPrice(Number(data.fake_price))}
               </span>
             )}
+            {data.fake_price && (
+              <p className="md:text-xl text-lg text-green-600 font-medium">
+                Tiết kiệm{" "}
+                {formatPrice(Number(data.fake_price) - Number(data.price))}
+              </p>
+            )}
           </div>
 
-          {data.fake_price && (
-            <p className="md:text-xl text-lg text-green-600 font-medium">
-              Tiết kiệm{" "}
-              {formatPrice(Number(data.fake_price) - Number(data.price))}
-            </p>
-          )}
+
         </div>
-        <div>
-            Mua bằng THẺ CÀO (
-              {formatPrice(Math.ceil(Number(data.price) * 1.2))})
-            </div>
+
         {/* Extra info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
           <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
@@ -182,9 +186,15 @@ export default function DetailPage({ data }: { data: any }) {
         </div>
 
         {/* Buttons */}
+        <div className="flex items-center gap-2 rounded-lg  text-indigo-500">
+          <ShieldCheck className="w-5 h-5 animate-pulse" />
+          <span className="font-medium">
+            Giao Dịch Tự Động - Nhanh Chóng
+          </span>
+        </div>
         <div className="flex flex-col md:flex-row gap-4 mt-4">
-          <Payment data={data}/>
-          
+          <Payment data={data} />
+
         </div>
       </div>
     </div>

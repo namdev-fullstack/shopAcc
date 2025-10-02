@@ -15,7 +15,7 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { QrCode, CreditCard, Wallet, Copy, Loader2 } from "lucide-react";
+import { QrCode, CreditCard, Wallet, Copy, Loader2, AlertTriangle } from "lucide-react";
 
 import TopUpCard from "./topUpCard";
 import { useAuth } from "@/context/AuthContext";
@@ -62,7 +62,7 @@ export default function DepositButton() {
                             <CreditCard className="h-4 w-4 text-blue-400" /> Thẻ cào
                         </TabsTrigger>
                     </TabsList>
-
+                   
                     {/* QR chuyển khoản */}
                     <TabsContent value="qr" className="mt-4">
                         <Card className="border">
