@@ -7,6 +7,7 @@ import Footer from '@/components/footer';
 import { Toaster } from 'sonner';
 import { AuthProvider } from '@/context/AuthContext';
 import ScrollToTop from '@/components/ScrollToTop';
+import MaintenancePage from '@/components/MaintenancePage';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -67,6 +68,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isMaintenance = process.env.MAINTENANCE_MODE === "true";
   return (
     <html lang="vi" className="scroll-smooth">
       <head>
@@ -132,7 +134,7 @@ export default function RootLayout({
       <ScrollToTop />
       <Header />
 
-        {children}
+      {isMaintenance ? <MaintenancePage /> : children}
         <Footer />
         <Toaster richColors position="bottom-right" />
         </AuthProvider>
