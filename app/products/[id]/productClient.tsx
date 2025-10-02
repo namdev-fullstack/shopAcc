@@ -16,6 +16,11 @@ function formatPrice(num: number) {
   return num.toLocaleString("vi-VN") + "₫"
 }
 
+type Category = {
+  id: string;
+  name: string;
+};
+
 type Account = {
   id: string
   code: string
@@ -29,7 +34,7 @@ type Account = {
   images: string[]
   created_at: string
   category_id: string
-  categories: { id: string; name: string }[] | null
+  categories: Category | null   // 🔑 chỉ 1 category
 }
 
 export default function ProductsPage() {
@@ -67,7 +72,14 @@ export default function ProductsPage() {
           )
         `)
 
-      if (!error && data) setData(data as Account[])
+        if (!error && data) {
+          const formatted = data.map((item) => ({
+            ...item,
+            categories: item.categories?.[0] || null, // lấy 1 category duy nhất
+          })) as Account[];
+        
+          setData(formatted);
+        }
       setLoading(false)
     }
 
@@ -130,7 +142,7 @@ export default function ProductsPage() {
   }, [page])
 
   return (
-    <div className="container mx-auto px-4 py-6 space-y-6">
+    <div className="container mx-auto md:px-4 px-2 py-6 space-y-6">
       <h1 className="text-2xl font-bold">Danh sách sản phẩm</h1>
 
       {/* search + filter */}
@@ -165,10 +177,9 @@ export default function ProductsPage() {
                 className="hover:bg-indigo-50 cursor-pointer"
               >
                 <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-indigo-500" />
-                {c.name}
-              </div>
-                
+                  <Layers className="w-4 h-4 text-indigo-500" />
+                  {c.name}
+                </div>
               </SelectItem>
             ))}
           </SelectContent>
@@ -221,23 +232,23 @@ export default function ProductsPage() {
       </div>
 
       {/* grid products */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-4 md:gap-6">
         {loading
           ? Array.from({ length: pageSize }).map((_, i) => (
-              <Card key={i} className="rounded-xl shadow-md border">
-                <CardContent className="p-0">
-                  <Skeleton className="w-full h-32 sm:h-40 rounded-t-lg" />
-                  <div className="p-3 sm:p-4 space-y-3">
-                    <Skeleton className="h-4 w-3/4" />
-                    <Skeleton className="h-3 w-1/2" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-8 w-20 rounded-md" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))
+            <Card key={i} className="rounded-xl shadow-md border">
+              <CardContent className="p-0">
+                <Skeleton className="w-full h-32 sm:h-40 rounded-t-lg" />
+                <div className="p-3 sm:p-4 space-y-3">
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-3 w-1/2" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-8 w-20 rounded-md" />
+                </div>
+              </CardContent>
+            </Card>
+          ))
           : paginatedData.length > 0
-          ? paginatedData.map((item) => (
+            ? paginatedData.map((item) => (
               <Link href={`/products/${item.id}`} key={item.id}>
                 <Card className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-[1px] border-gray-200 bg-white rounded-xl shadow-md">
                   <CardContent className="p-0">
@@ -262,34 +273,28 @@ export default function ProductsPage() {
                           <span className="font-bold text-xs">Hot</span>
                         </Badge>
                       )}
-                      <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
-                                                <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
-                                                <span className="font-bold text-xs">Hot</span>
-                                              </Badge>
                     </div>
 
                     <div className="p-3 sm:p-4">
                       <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
                         Mã:{item.code}
                       </h3>
-                      
+
                       <div className="flex items-center space-x-1 mb-3">
                         <Trophy className="w-3 h-3 text-yellow-500" />
                         <span className="text-xs sm:text-sm font-medium text-gray-700">
                           Rank: {item.rank}
                         </span>
                       </div>
-                      <div className="flex items-center space-x-1 mb-3">
+                      {/* <div className="flex items-center space-x-1 mb-3 text-xs md:text-sm">
                         <div className="flex items-center gap-1">
-                        <CircleArrowOutDownRight  className="w-3 h-3 text-yellow-500" />
-                        Loại:
+                          <CircleArrowOutDownRight className="w-3 h-3 text-yellow-500" />
+                          Loại:
                         </div>
                         <span className="text-xs md:text-sm font-bold text-indigo-500">
-                         {item.categories && item.categories.length > 0
-    ? item.categories.map(c => c.name).join(", ")
-    : "Chưa phân loại"}
+                          {item.categories ? item.categories.name : ""}
                         </span>
-                      </div>
+                      </div> */}
                       <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mb-3">
                         <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
                           <Users className="w-3 h-3 text-blue-500 font-bold" />
@@ -323,39 +328,32 @@ export default function ProductsPage() {
                 </Card>
               </Link>
             ))
-          : (
-            <div className="col-span-full flex flex-col items-center py-16 text-center space-y-4 md:pb-40">
-    {/* icon với animation nhịp tim */}
-    <div className="relative">
-      <TriangleAlert  className="w-16 h-16 text-red-400 animate-pulse" />
-      <div className="absolute inset-0 w-16 h-16 rounded-full border-2 border-red-300 animate-ping opacity-20" />
-    </div>
-
-    {/* caption chính */}
-    <p className="font-bold text-xl md:text-2xl bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
-      Rất tiếc, không tìm thấy acc bạn mong muốn 😢
-    </p>
-
-    {/* caption phụ */}
-    <p className="text-sm md:text-lg text-gray-500 animate-fade-in-up">
-      Hãy thử đổi bộ lọc khác hoặc tìm kiếm lại nhé 💡
-    </p>
-
-    {/* gợi ý thêm nút refresh */}
-    <Button
-      variant="outline"
-      className="mt-3 rounded-full px-5 py-2 hover:bg-indigo-50 transition-all"
-      onClick={() => window.location.reload()}
-    >
-      Thử lại
-    </Button>
-  </div>
-          )}
+            : (
+              <div className="col-span-full flex flex-col items-center py-16 text-center space-y-4 md:pb-40">
+                <div className="relative">
+                  <TriangleAlert className="w-16 h-16 text-red-400 animate-pulse" />
+                  <div className="absolute inset-0 w-16 h-16 rounded-full border-2 border-red-300 animate-ping opacity-20" />
+                </div>
+                <p className="font-bold text-xl md:text-2xl bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
+                  Rất tiếc, không tìm thấy acc bạn mong muốn 😢
+                </p>
+                <p className="text-sm md:text-lg text-gray-500 animate-fade-in-up">
+                  Hãy thử đổi bộ lọc khác hoặc tìm kiếm lại nhé 💡
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-3 rounded-full px-5 py-2 hover:bg-indigo-50 transition-all"
+                  onClick={() => window.location.reload()}
+                >
+                  Thử lại
+                </Button>
+              </div>
+            )}
       </div>
 
       {/* pagination */}
       {totalPages > 1 && !loading && filteredData.length > 0 && (
-        <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
+        <div className="flex justify-center items-center gap-2 pt-8 flex-wrap">
           <Button
             variant="outline"
             size="icon"
