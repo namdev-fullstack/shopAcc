@@ -176,7 +176,7 @@ export default async function Home() {
                       <div className="p-3 sm:p-4">
                         {/* Title */}
                         <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1 flex items-center justify-between selection: gap-2">
-                          {acc.code}
+                          Mã:{acc.code}
 
                           {acc.highlight && (
                             <span className="flex items-center gap-1 text-red-500 font-semibold ">
@@ -322,7 +322,7 @@ export default async function Home() {
                       <div className="p-3 sm:p-4">
                         {/* Title */}
                         <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
-                          {item.code}
+                          Mã:{item.code}
                         </h3>
 
                         {/* Rank */}
@@ -473,7 +473,7 @@ export default async function Home() {
                     <div className="p-3 sm:p-4">
                       {/* Title */}
                       <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
-                        {item.code}
+                        Mã:{item.code}
                       </h3>
 
                       {/* Rank */}
@@ -623,7 +623,7 @@ export default async function Home() {
                       <div className="p-3 sm:p-4">
                         {/* Title */}
                         <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
-                          {item.code}
+                          Mã:{item.code}
                         </h3>
 
                         {/* Rank */}
@@ -771,7 +771,7 @@ export default async function Home() {
                       <div className="p-3 sm:p-4">
                         {/* Title */}
                         <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
-                          {item.code}
+                          Mã:{item.code}
                         </h3>
 
                         {/* Rank */}

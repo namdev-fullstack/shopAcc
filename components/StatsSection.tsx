@@ -29,14 +29,8 @@ const stats = [
     value: "9.8/10",
     icon: Star,
     color: "from-yellow-400 to-orange-500",
-  },
-  {
-    id: 5,
-    label: "Thuộc Tiktoker",
-    value: "DyLor",
-    icon: BadgeCent, // có thể thay bằng logo TikTok svg riêng
-    color: "from-black to-pink-500",
-  },
+  }
+  
 ]
 
 export default function StatsSection() {
@@ -54,7 +48,7 @@ export default function StatsSection() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {stats.map((stat) => {
             const Icon = stat.icon
             return (

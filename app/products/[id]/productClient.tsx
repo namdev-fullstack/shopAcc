@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ChevronRight, Star, Trophy, Users, Search } from "lucide-react"
+import { ChevronRight, Star, Trophy, Users, Search, ChevronLeft } from "lucide-react"
 import Link from "next/link"
 
 function formatPrice(num: number) {
@@ -96,7 +96,10 @@ export default function ProductsPage() {
   const start = (page - 1) * pageSize
   const paginatedData = filteredData.slice(start, start + pageSize)
   const totalPages = Math.ceil(filteredData.length / pageSize)
-
+  // Mỗi lần đổi page -> scroll lên đầu
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [page])
   return (
     <div className="container mx-auto px-4 py-6 space-y-6">
       <h1 className="text-2xl font-bold">Danh sách sản phẩm</h1>
@@ -164,7 +167,7 @@ export default function ProductsPage() {
                 </div>
 
                 <div className="p-3 sm:p-4">
-                  <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">{item.code}</h3>
+                  <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">Mã:{item.code}</h3>
 
                   <div className="flex items-center space-x-1 mb-3">
                     <Trophy className="w-3 h-3 text-yellow-500" />
@@ -215,17 +218,46 @@ export default function ProductsPage() {
       </div>
 
       {/* pagination */}
-      <div className="flex justify-center items-center gap-3 mt-6">
-        <Button variant="outline" disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
-          Trước
-        </Button>
-        <span>
-          Trang {page}/{totalPages}
-        </span>
-        <Button variant="outline" disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
-          Sau
-        </Button>
-      </div>
+     
+<div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
+  {/* Nút trước */}
+  <Button
+    variant="outline"
+    size="icon"
+    disabled={page === 1}
+    onClick={() => setPage((p) => p - 1)}
+    className="rounded-full hover:bg-indigo-50 hover:border-indigo-300 transition-colors"
+  >
+    <ChevronLeft className="w-4 h-4" />
+  </Button>
+
+  {/* Các số trang */}
+  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+    <Button
+      key={p}
+      variant={p === page ? "default" : "outline"}
+      onClick={() => setPage(p)}
+      className={`w-9 h-9 rounded-full text-sm font-medium transition-all
+        ${p === page
+          ? "bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-md"
+          : "hover:bg-indigo-50 hover:border-indigo-300"
+        }`}
+    >
+      {p}
+    </Button>
+  ))}
+
+  {/* Nút sau */}
+  <Button
+    variant="outline"
+    size="icon"
+    disabled={page === totalPages}
+    onClick={() => setPage((p) => p + 1)}
+    className="rounded-full hover:bg-indigo-50 hover:border-indigo-300 transition-colors"
+  >
+    <ChevronRight className="w-4 h-4" />
+  </Button>
+</div>
     </div>
   )
 }
