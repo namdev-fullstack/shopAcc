@@ -9,8 +9,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
-import { ChevronRight, Star, Trophy, Users, Search, ChevronLeft, DollarSign, SearchX, TriangleAlert, Layers, CircleArrowOutDownRight } from "lucide-react"
+import { ChevronRight, Star, Trophy, Users, Search, ChevronLeft, DollarSign, SearchX, TriangleAlert, Layers, CircleArrowOutDownRight, WalletMinimal } from "lucide-react"
 import Link from "next/link"
+import { getDeposit } from "@/lib/utils"
 
 function formatPrice(num: number) {
   return num.toLocaleString("vi-VN") + "₫"
@@ -322,6 +323,15 @@ export default function ProductsPage() {
                         <p className="text-[11px] sm:text-xs text-green-600 font-medium">
                           Tiết kiệm {formatPrice(item.fake_price - item.price)}
                         </p>
+                        <div className="flex items-center gap-1.5 sm:gap-2 text-red-600 font-semibold 
+                text-[10px] sm:text-xs md:text-sm 
+                bg-red-50 px-2 sm:px-3 py-1 rounded-md shadow-sm w-fit mt-2">
+  <WalletMinimal className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-500 animate-heartbeat" />
+  <span className="whitespace-nowrap">
+    Chỉ cần cọc: {formatPrice(getDeposit(Number(item.price)))}
+  </span>
+</div>
+
                       </div>
                     </div>
                   </CardContent>

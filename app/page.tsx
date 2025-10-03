@@ -1,5 +1,5 @@
 
-import { ChevronRight, Star, Users, Zap, Flame, Trophy } from 'lucide-react';
+import { ChevronRight, Star, Users, Zap, Flame, Trophy, WalletMinimal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,7 +9,7 @@ import StatsSection from '@/components/StatsSection';
 import Link from 'next/link';
 import Timer from '@/components/timer';
 import { createClient } from '@/utils/supabase/server';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, getDeposit } from '@/lib/utils';
 
 
 
@@ -108,7 +108,7 @@ export default async function Home() {
                      hover:shadow-blue-400/50 hover:scale-105 transition 
                      text-sm sm:text-base">
                   <Link href='/products'>
-                  Danh Sách Acc
+                    Danh Sách Acc
                   </Link>
                 </button>
 
@@ -116,9 +116,9 @@ export default async function Home() {
                      border border-blue-500 text-blue-600 font-semibold 
                      hover:bg-blue-50 transition 
                      text-sm sm:text-base">
-                 <Link href="https://zalo.me/0563275607" target="_blank" className='flex items-center justify-center'>
-                 Liên Hệ
-                 </Link>
+                  <Link href="https://zalo.me/0563275607" target="_blank" className='flex items-center justify-center'>
+                    Liên Hệ
+                  </Link>
                 </button>
               </div>
 
@@ -226,6 +226,16 @@ export default async function Home() {
                           <p className="text-[11px] sm:text-xs text-green-600 font-medium">
                             Tiết kiệm {formatPrice(Number(acc.fake_price) - Number(acc.price))}
                           </p>
+                          {/* Deposit */}
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-red-600 font-semibold 
+                text-[10px] sm:text-xs md:text-sm 
+                bg-red-50 px-2 sm:px-3 py-1 rounded-md shadow-sm w-fit mt-2">
+                            <WalletMinimal className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-500 animate-heartbeat" />
+                            <span className="whitespace-nowrap">
+                              Chỉ cần cọc: {formatPrice(getDeposit(Number(acc.price)))}
+                            </span>
+                          </div>
+
                         </div>
 
                         {/* Bottom row */}
@@ -362,6 +372,15 @@ export default async function Home() {
                           <p className="text-[11px] sm:text-xs text-green-600 font-medium">
                             Tiết kiệm {formatPrice(item.fake_price - item.price)}
                           </p>
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-red-600 font-semibold 
+                text-[10px] sm:text-xs md:text-sm 
+                bg-red-50 px-2 sm:px-3 py-1 rounded-md shadow-sm w-fit mt-2">
+                            <WalletMinimal className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-500 animate-heartbeat" />
+                            <span className="whitespace-nowrap">
+                              Chỉ cần cọc: {formatPrice(getDeposit(Number(item.price)))}
+                            </span>
+                          </div>
+
                         </div>
 
                         {/* Bottom row */}
@@ -432,107 +451,116 @@ export default async function Home() {
               .map((item) => (
                 <Link key={item.id} href={`/products/${item.id}`}>
 
-                <Card
-                  key={item.id}
-                  className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
-                >
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden rounded-t-lg">
-                      <Image
-                        src={item.images?.[0]}
-                        alt={item.code}
-                        width={400}
-                        height={200}
-                        className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
-                      />
-                      {/* Giảm giá % */}
-                      <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
-                        -
-                        {Math.round(
-                          ((Number(item.fake_price) - Number(item.price)) /
-                            Number(item.fake_price)) *
-                          100
-                        )}
-                        %
-                      </Badge>
+                  <Card
+                    key={item.id}
+                    className="group hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-500 border-0 bg-white rounded-xl"
+                  >
+                    <CardContent className="p-0">
+                      <div className="relative overflow-hidden rounded-t-lg">
+                        <Image
+                          src={item.images?.[0]}
+                          alt={item.code}
+                          width={400}
+                          height={200}
+                          className="w-full h-32 sm:h-40 object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700"
+                        />
+                        {/* Giảm giá % */}
+                        <Badge className="absolute top-2 left-2 bg-gradient-to-r from-indigo-500 to-blue-600 text-white text-[10px] border-0 shadow-md">
+                          -
+                          {Math.round(
+                            ((Number(item.fake_price) - Number(item.price)) /
+                              Number(item.fake_price)) *
+                            100
+                          )}
+                          %
+                        </Badge>
 
-                      {/* Sale hot */}
-                      <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
-                        <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
-                        <span className="font-bold text-xs">Hot</span>
-                      </Badge>
+                        {/* Sale hot */}
+                        <Badge className="absolute top-2 right-2 flex items-center space-x-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg px-3 py-1 rounded-md">
+                          <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
+                          <span className="font-bold text-xs">Hot</span>
+                        </Badge>
 
-                      {/* Tag dưới ảnh */}
-                      <div className="absolute bottom-0 left-0">
-                        <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
-                          Acc Reg
+                        {/* Tag dưới ảnh */}
+                        <div className="absolute bottom-0 left-0">
+                          <div className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-[10px] px-2 py-0.5 rounded-tr-lg shadow-md">
+                            Acc Reg
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="p-3 sm:p-4">
-                      {/* Title */}
-                      <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
-                        Mã:{item.code}
-                      </h3>
+                      <div className="p-3 sm:p-4">
+                        {/* Title */}
+                        <h3 className="text-sm sm:text-base font-bold mb-1 line-clamp-1">
+                          Mã:{item.code}
+                        </h3>
 
-                      {/* Rank */}
-                      <div className="flex items-center space-x-1 mb-3">
-                        <Trophy className="w-3 h-3 text-yellow-500" />
-                        <span className="text-xs sm:text-sm font-medium text-gray-700">
-                          Rank: {item.rank}
-                        </span>
-                      </div>
-
-                      {/* Extra info */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
-                        <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
-                          <Users className="w-3 h-3 text-blue-500 font-bold" />
-                          <span className="text-[11px] text-gray-700 font-bold">
-                            {item.heroes_count} Tướng
+                        {/* Rank */}
+                        <div className="flex items-center space-x-1 mb-3">
+                          <Trophy className="w-3 h-3 text-yellow-500" />
+                          <span className="text-xs sm:text-sm font-medium text-gray-700">
+                            Rank: {item.rank}
                           </span>
                         </div>
-                        <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
-                          <Star className="w-3 h-3 text-pink-500" />
-                          <span className="text-[11px] text-gray-700 font-bold">
-                            {item.skins_count} Skin
-                          </span>
-                        </div>
-                      </div>
 
-                      {/* Price */}
-                      <div className="mb-3">
-                        <div className="flex items-center space-x-1 mb-1">
-                          <span className="md:text-lg text-xs font-bold text-red-500">
-                            {formatPrice(item.price)}
-                          </span>
-                          <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
-                            {formatPrice(item.fake_price)}
-                          </span>
+                        {/* Extra info */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                          <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Users className="w-3 h-3 text-blue-500 font-bold" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.heroes_count} Tướng
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
+                            <Star className="w-3 h-3 text-pink-500" />
+                            <span className="text-[11px] text-gray-700 font-bold">
+                              {item.skins_count} Skin
+                            </span>
+                          </div>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-green-600 font-medium">
-                          Tiết kiệm {formatPrice(item.fake_price - item.price)}
-                        </p>
-                      </div>
 
-                      {/* Bottom row */}
-                      <div className="md:flex items-center justify-between hidden">
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3 h-3 fill-yellow-400 text-yellow-400"
-                            />
-                          ))}
+                        {/* Price */}
+                        <div className="mb-3">
+                          <div className="flex items-center space-x-1 mb-1">
+                            <span className="md:text-lg text-xs font-bold text-red-500">
+                              {formatPrice(item.price)}
+                            </span>
+                            <span className="text-[11px] sm:text-xs text-gray-400 line-through truncate max-w-[60px] inline-block">
+                              {formatPrice(item.fake_price)}
+                            </span>
+                          </div>
+                          <p className="text-[11px] sm:text-xs text-green-600 font-medium">
+                            Tiết kiệm {formatPrice(item.fake_price - item.price)}
+                          </p>
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-red-600 font-semibold 
+                text-[10px] sm:text-xs md:text-sm 
+                bg-red-50 px-2 sm:px-3 py-1 rounded-md shadow-sm w-fit mt-2">
+                            <WalletMinimal className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-500 animate-heartbeat" />
+                            <span className="whitespace-nowrap">
+                              Chỉ cần cọc: {formatPrice(getDeposit(Number(item.price)))}
+                            </span>
+                          </div>
+
                         </div>
-                        <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
-                          Mua
-                          <ChevronRight className="w-3 h-3 ml-1" />
-                        </Button>
+
+                        {/* Bottom row */}
+                        <div className="md:flex items-center justify-between hidden">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-3 h-3 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                          </div>
+                          <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 hover:shadow-lg hover:scale-105 text-white text-[11px] px-2.5 py-1.5 h-auto transition-all duration-300">
+                            Mua
+                            <ChevronRight className="w-3 h-3 ml-1" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
                 </Link>
 
               ))}
@@ -546,7 +574,7 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-           <Link href="/products">
+            <Link href="/products">
               Xem tất cả tài khoản
             </Link>
             <ChevronRight className="ml-2 w-5 h-5" />
@@ -663,6 +691,15 @@ export default async function Home() {
                           <p className="text-[11px] sm:text-xs text-green-600 font-medium">
                             Tiết kiệm {formatPrice(item.fake_price - item.price)}
                           </p>
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-red-600 font-semibold 
+                text-[10px] sm:text-xs md:text-sm 
+                bg-red-50 px-2 sm:px-3 py-1 rounded-md shadow-sm w-fit mt-2">
+                            <WalletMinimal className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-500 animate-heartbeat" />
+                            <span className="whitespace-nowrap">
+                              Chỉ cần cọc: {formatPrice(getDeposit(Number(item.price)))}
+                            </span>
+                          </div>
+
                         </div>
 
                         {/* Bottom row */}
@@ -695,7 +732,7 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-          <Link href="/products">
+            <Link href="/products">
               Xem tất cả tài khoản
             </Link>
             <ChevronRight className="ml-2 w-5 h-5" />
@@ -811,6 +848,15 @@ export default async function Home() {
                           <p className="text-[11px] sm:text-xs text-green-600 font-medium">
                             Tiết kiệm {formatPrice(item.fake_price - item.price)}
                           </p>
+                          <div className="flex items-center gap-1.5 sm:gap-2 text-red-600 font-semibold 
+                text-[10px] sm:text-xs md:text-sm 
+                bg-red-50 px-2 sm:px-3 py-1 rounded-md shadow-sm w-fit mt-2">
+                            <WalletMinimal className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-500 animate-heartbeat" />
+                            <span className="whitespace-nowrap">
+                              Chỉ cần cọc: {formatPrice(getDeposit(Number(item.price)))}
+                            </span>
+                          </div>
+
                         </div>
 
                         {/* Bottom row */}
@@ -843,7 +889,7 @@ export default async function Home() {
             size="lg"
             className="bg-gradient-to-r from-violet-500 to-blue-500 hover:from-violet-400 hover:to-blue-400 hover:shadow-2xl hover:scale-110 text-white shadow-lg transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-           <Link href="/products">
+            <Link href="/products">
               Xem tất cả tài khoản
             </Link>
             <ChevronRight className="ml-2 w-5 h-5" />

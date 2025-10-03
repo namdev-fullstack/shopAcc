@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Flame, ShieldCheck, Star, Tag, Users } from "lucide-react";
-import { formatPrice } from "@/lib/utils";
+import { Flame, ShieldCheck, Star, Tag, Users, WalletMinimal } from "lucide-react";
+import { formatPrice, getDeposit } from "@/lib/utils";
 import Payment from "./payment";
 
 export default function DetailPage({ data }: { data: any }) {
@@ -118,32 +118,32 @@ export default function DetailPage({ data }: { data: any }) {
           {data.is_sale && data.fake_price && (
 
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-               <span className="md:text-lg text-base font-bold text-blue-500">
-            ATM/MOMO/CARD(Thẻ Cào)
-          </span>
-       
-            <div
-              className="flex items-center gap-1 text-white font-semibold text-xs sm:text-sm
+              <span className="md:text-lg text-base font-bold text-blue-500">
+                ATM/MOMO/CARD(Thẻ Cào)
+              </span>
+
+              <div
+                className="flex items-center gap-1 text-white font-semibold text-xs sm:text-sm
               bg-gradient-to-r from-red-500 to-pink-500
               px-2 py-1 rounded-md shadow-md border border-red-600"
-            >
-              <Tag className="w-4 h-4 text-white" />
-              -
-              {Math.round(
-                ((Number(data.fake_price) - Number(data.price)) /
-                  Number(data.fake_price)) *
-                100
-              )}
-              %
-            </div>
+              >
+                <Tag className="w-4 h-4 text-white" />
+                -
+                {Math.round(
+                  ((Number(data.fake_price) - Number(data.price)) /
+                    Number(data.fake_price)) *
+                  100
+                )}
+                %
+              </div>
             </div>
           )}
         </div>
 
         {/* Giá */}
         <div className="mb-3">
-         
-          <div className="flex items-center gap-2 mb-1 flex-wrap">
+
+          <div className="flex items-center gap-x-4 mb-1 flex-wrap">
 
             <span className="md:text-lg text-lg font-bold text-red-500">
               {formatPrice(Number(data.price))}
@@ -165,7 +165,15 @@ export default function DetailPage({ data }: { data: any }) {
               </p>
             )}
           </div>
+          {getDeposit(Number(data.price)) > 0 && (
 
+<div className="flex items-center gap-2 text-red-600 font-semibold text-base md:text-lg bg-red-50 px-3 py-1 rounded-lg shadow-sm w-fit">
+<WalletMinimal className="w-4 h-4 animate-heartbeat text-red-500" />
+<span>Cọc: {formatPrice(getDeposit(Number(data.price)))}</span>
+</div>
+
+
+          )}
 
         </div>
 
