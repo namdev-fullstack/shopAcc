@@ -45,7 +45,7 @@ export default function Payment({ data }: { data: any }) {
             <AlertDialogTrigger asChild>
                 <Button className="bg-blue-600 hover:bg-blue-700 w-full">
 
-                    Mua Ngay
+                    Mua Ngay (Liên Hệ - Để Cọc)
                 </Button>
             </AlertDialogTrigger>
 {user && user ?(
