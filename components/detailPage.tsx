@@ -182,13 +182,13 @@ export default function DetailPage({ data }: { data: any }) {
           <div className="flex items-center space-x-2 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
             <Users className="w-3 h-3 text-blue-500 font-bold" />
             <span className="text-base md:text-lg text-gray-700 font-bold">
-              {data.heroes_count} Tướng
+              {!data.heroes_count ? "Tướng: Xem chi tiết trong ảnh" : data.heroes_count + " Tướng"}
             </span>
           </div>
           <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
             <Star className="w-3 h-3 text-pink-500" />
             <span className="text-base md:text-lg text-gray-700 font-bold">
-              {data.skins_count} Skin
+              {!data.skins_count ? "Skin: Xem chi tiết trong ảnh" : data.skins_count + " Skin"}
             </span>
           </div>
         </div>

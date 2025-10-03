@@ -300,13 +300,15 @@ export default function ProductsPage() {
                         <div className="flex items-center space-x-1 bg-blue-50 px-1.5 py-1 rounded-md shadow-sm">
                           <Users className="w-3 h-3 text-blue-500 font-bold" />
                           <span className="text-[11px] text-gray-700 font-bold">
-                            {item.heroes_count} Tướng
+                            {!item.heroes_count  ? "Tướng trong ảnh" : item.heroes_count + " Tướng"}
+                          
                           </span>
                         </div>
                         <div className="flex items-center space-x-1 bg-pink-50 px-1.5 py-1 rounded-md shadow-sm">
                           <Star className="w-3 h-3 text-pink-500" />
                           <span className="text-[11px] text-gray-700 font-bold">
-                            {item.skins_count} Skin
+                            {!item.skins_count  ? "Skin trong ảnh" : item.skins_count + " Skin"}
+                            
                           </span>
                         </div>
                       </div>
