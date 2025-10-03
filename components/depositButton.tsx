@@ -124,7 +124,7 @@ export default function DepositButton() {
                                                 <AlertTriangle className="w-5 h-5 text-red-500" />
                                                 <p className="text-red-500">Hệ thống đang bảo trì</p>
                                             </div>
-                                            <p className="text-indigo-600 font-medium text-center">Vui lòng <Link href="https://www.tiktok.com/@ronaldylor_04" target="_blank" className="font-bold text-green-500 underline">liên hệ</Link> để được hỗ trợ hoặc dùng phương thức <span className="font-bold text-base underline">thanh toán khác</span></p>
+                                            <p className="text-indigo-600 font-medium text-center">Vui lòng <Link href="https://zalo.me/0563275607" target="_blank" className="font-bold text-green-500 underline">liên hệ</Link> để được hỗ trợ hoặc dùng phương thức <span className="font-bold text-base underline">thanh toán khác</span></p>
                                         </>
                                     )
                             }

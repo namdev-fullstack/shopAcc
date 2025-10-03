@@ -116,7 +116,7 @@ export default async function Home() {
                      border border-blue-500 text-blue-600 font-semibold 
                      hover:bg-blue-50 transition 
                      text-sm sm:text-base">
-                 <Link href="https://www.tiktok.com/@ronaldylor_04" target="_blank" className='flex'>
+                 <Link href="https://zalo.me/0563275607" target="_blank" className='flex items-center justify-center'>
                  Liên Hệ
                  </Link>
                 </button>
