@@ -45,7 +45,7 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [priceRange, setPriceRange] = useState<string>("all")
   const [page, setPage] = useState(1)
-  const [pageSize] = useState(8)
+  const [pageSize] = useState(16)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
